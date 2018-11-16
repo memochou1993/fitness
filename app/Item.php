@@ -15,4 +15,14 @@ class Item extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    /**
+     * The users that belong to the item.
+     *
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'user_item')->withPivot('key');
+    }
 }

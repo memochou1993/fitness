@@ -39,12 +39,12 @@ class User extends Authenticatable
     }
 
     /**
-     * The lessons that belong to the user.
+     * The items that belong to the user.
      *
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function lessons()
+    public function items()
     {
-        return $this->belongsToMany(Lesson::class, 'user_lesson')->withPivot('key', 'length');
+        return $this->belongsToMany(Item::class, 'user_item')->withPivot('key');
     }
 }
