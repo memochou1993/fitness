@@ -12,4 +12,13 @@ class UserItem extends Model
      * @var string
      */
     protected $table = 'user_item';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'date', 'frequency',
+    ];
 }

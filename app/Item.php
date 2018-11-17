@@ -2,10 +2,40 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Item extends Model
 {
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name', 'unit',
+    ];
+
+    /**
+     *
+     *
+     *
+     */
+    public function getCreatedAtAttribute($value)
+    {
+        return $value ? Carbon::parse($value)->diffForHumans() : null;
+    }
+
+    /**
+     *
+     *
+     *
+     */
+    public function getUpdatedAtAttribute($value)
+    {
+        return $value ? Carbon::parse($value)->diffForHumans() : null;
+    }
+
     /**
      * Get the category associated with the item.
      *
@@ -23,6 +53,8 @@ class Item extends Model
      */
     public function users()
     {
-        return $this->belongsToMany(User::class, 'user_item')->withPivot('key');
+        return $this->belongsToMany(User::class, 'user_item')->withPivot([
+            'key', 'date', 'frequency',
+        ]);
     }
 }
