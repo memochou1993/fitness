@@ -16,6 +16,8 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected $namespace = 'App\Http\Controllers';
 
+    protected $api_version;
+
     /**
      * Define your route model bindings, pattern filters, etc.
      *
@@ -23,7 +25,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $this->api_version = config('default.api.version');
 
         parent::boot();
     }
@@ -35,9 +37,11 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map()
     {
-        $this->mapApiUserRoutes();
+        $this->mapApiAdminRoutes();
 
-        $this->mapWebRoutes();
+        $this->mapApiFrontRoutes();
+
+        // $this->mapWebRoutes();
 
         //
     }
@@ -57,17 +61,32 @@ class RouteServiceProvider extends ServiceProvider
     }
 
     /**
-     * Define the "api" routes for the application.
+     * Define the "api.admin" routes for the application.
      *
      * These routes are typically stateless.
      *
      * @return void
      */
-    protected function mapApiUserRoutes()
+    protected function mapApiAdminRoutes()
     {
-        Route::prefix('api/user')
+        Route::prefix('api/' . $this->api_version . '/admin')
              ->middleware('api')
-             ->namespace($this->namespace . '\Api\User')
-             ->group(base_path('routes/api/user.php'));
+             ->namespace($this->namespace . '\Api\\' . strtoupper($this->api_version) . '\Admin')
+             ->group(base_path('routes/api/admin.php'));
+    }
+
+    /**
+     * Define the "api.front" routes for the application.
+     *
+     * These routes are typically stateless.
+     *
+     * @return void
+     */
+    protected function mapApiFrontRoutes()
+    {
+        Route::prefix('api/' . $this->api_version)
+             ->middleware('api')
+             ->namespace($this->namespace . '\Api\\' . strtoupper($this->api_version) . '\Front')
+             ->group(base_path('routes/api/front.php'));
     }
 }

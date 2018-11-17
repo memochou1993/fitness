@@ -1,15 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Api\User;
+namespace App\Http\Controllers\Api\V1\Front;
 
 use App\Contracts\UserItemInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserItemResource;
-use Illuminate\Http\Request;
 
 class UserItemController extends Controller
 {
-    protected $request;
     protected $user_item;
 
     /**
@@ -17,9 +15,8 @@ class UserItemController extends Controller
      *
      *
      */
-    public function __construct(Request $request, UserItemInterface $user_item)
+    public function __construct(UserItemInterface $user_item)
     {
-        $this->request = $request;
         $this->user_item = $user_item;
     }
 
