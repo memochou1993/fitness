@@ -2,22 +2,25 @@
 
 namespace App\Http\Controllers\Api\V1\Front;
 
-use App\Contracts\ItemInterface;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\ItemResource;
+use App\Contracts\Front\ItemInterface;
+use App\Http\Resources\Front\ItemResource;
 
 class ItemController extends Controller
 {
-    protected $item;
+    /**
+     *
+     */
+    protected $item_interface;
 
     /**
      *
      *
      *
      */
-    public function __construct(ItemInterface $item)
+    public function __construct(ItemInterface $item_interface)
     {
-        $this->item = $item;
+        $this->item_interface = $item_interface;
     }
 
     /**
@@ -25,10 +28,10 @@ class ItemController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($user_id)
+    public function index()
     {
         return ItemResource::collection(
-            $this->item->getItemsByUserId($user_id)
+            $this->item_interface->getItems()
         );
     }
 

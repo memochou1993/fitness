@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Validator;
 
-class VerifyRequest
+class VerifyParameters
 {
     /**
      * Handle an incoming request.

@@ -13,5 +13,8 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/users/{user_id}', 'UserController@index');
-Route::get('/users/{user_id}/items', 'ItemController@index');
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
+});
+
+Route::get('/items', 'ItemController@index');

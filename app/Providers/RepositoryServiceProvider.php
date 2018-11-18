@@ -3,8 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Contracts\ItemInterface;
-use App\Repositories\ItemRepository;
+use App\Contracts\Front\ItemInterface as FrontItemInterface;
+use App\Repositories\Front\ItemRepository as FrontItemRepository;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -33,8 +33,8 @@ class RepositoryServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(
-            ItemInterface::class,
-            ItemRepository::class
+            FrontItemInterface::class,
+            FrontItemRepository::class
         );
     }
 
@@ -46,7 +46,7 @@ class RepositoryServiceProvider extends ServiceProvider
     public function provides()
     {
         return [
-            ItemInterface::class,
+            FrontItemInterface::class,
         ];
     }
 }
