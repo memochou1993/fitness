@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Api\V1\Front;
 
 use App\Contracts\ItemInterface;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\UserItemResource;
+use App\Http\Resources\ItemResource;
 
-class UserItemController extends Controller
+class ItemController extends Controller
 {
     protected $item;
 
@@ -27,7 +27,7 @@ class UserItemController extends Controller
      */
     public function index($user_id)
     {
-        return UserItemResource::collection(
+        return ItemResource::collection(
             $this->item->getItemsByUserId($user_id)
         );
     }

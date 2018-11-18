@@ -13,7 +13,5 @@ use Illuminate\Http\Request;
 |
 */
 
-// Route::resource('/user_items', 'UserItemController');
-
 Route::get('/users/{user_id}', 'UserController@index');
-Route::get('/users/{user_id}/records', 'UserItemController@index');
+Route::get('/users/{user_id}/items', 'ItemController@index');
