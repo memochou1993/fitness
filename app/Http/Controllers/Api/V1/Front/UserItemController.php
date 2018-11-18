@@ -2,22 +2,22 @@
 
 namespace App\Http\Controllers\Api\V1\Front;
 
-use App\Contracts\UserItemInterface;
+use App\Contracts\ItemInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserItemResource;
 
 class UserItemController extends Controller
 {
-    protected $user_item;
+    protected $item;
 
     /**
      *
      *
      *
      */
-    public function __construct(UserItemInterface $user_item)
+    public function __construct(ItemInterface $item)
     {
-        $this->user_item = $user_item;
+        $this->item = $item;
     }
 
     /**
@@ -27,9 +27,9 @@ class UserItemController extends Controller
      */
     public function index($user_id)
     {
-        $user_items = $this->user_item->getUserItemsByUserId($user_id);
-
-        return UserItemResource::collection($user_items);
+        return UserItemResource::collection(
+            $this->item->getItemsByUserId($user_id)
+        );
     }
 
     /**
