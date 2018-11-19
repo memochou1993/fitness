@@ -37,11 +37,9 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map()
     {
-        $this->mapApiAdminRoutes();
+        $this->mapApiRoutes();
 
-        $this->mapApiFrontRoutes();
-
-        // $this->mapWebRoutes();
+        $this->mapWebRoutes();
 
         //
     }
@@ -61,32 +59,17 @@ class RouteServiceProvider extends ServiceProvider
     }
 
     /**
-     * Define the "api.admin" routes for the application.
+     * Define the "api" routes for the application.
      *
      * These routes are typically stateless.
      *
      * @return void
      */
-    protected function mapApiAdminRoutes()
-    {
-        Route::prefix('api/' . $this->api_version . '/admin')
-             ->middleware('api')
-             ->namespace($this->namespace . '\Api\\' . strtoupper($this->api_version) . '\Admin')
-             ->group(base_path('routes/api/admin.php'));
-    }
-
-    /**
-     * Define the "api.front" routes for the application.
-     *
-     * These routes are typically stateless.
-     *
-     * @return void
-     */
-    protected function mapApiFrontRoutes()
+    protected function mapApiRoutes()
     {
         Route::prefix('api/' . $this->api_version)
              ->middleware('api')
-             ->namespace($this->namespace . '\Api\\' . strtoupper($this->api_version) . '\Front')
-             ->group(base_path('routes/api/front.php'));
+             ->namespace($this->namespace . '\Api\\' . strtoupper($this->api_version))
+             ->group(base_path('routes/api.php'));
     }
 }
