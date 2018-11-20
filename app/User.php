@@ -47,7 +47,7 @@ class User extends Authenticatable
     public function items()
     {
         return $this->belongsToMany(Item::class, 'user_item')->withPivot([
-            'key', 'date', 'frequency',
-        ]);
+            'frequency',
+        ])->withTimestamps();
     }
 }

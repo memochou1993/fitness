@@ -2,21 +2,25 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use Illuminate\Http\Request;
+use App\Contracts\UserInterface;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\UserResource;
 
 class UserController extends Controller
 {
-    protected $request;
+    /**
+     *
+     */
+    protected $user_interface;
 
     /**
      *
      *
      *
      */
-    public function __construct(Request $request)
+    public function __construct(UserInterface $user_interface)
     {
-        $this->request = $request;
+        $this->user_interface = $user_interface;
     }
 
     /**
@@ -25,16 +29,6 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index($user_id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
     {
         //
     }
@@ -57,17 +51,6 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
     {
         //
     }

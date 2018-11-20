@@ -18,3 +18,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/items', 'ItemController@index');
+Route::get('/items/{item_key}', 'ItemController@show');

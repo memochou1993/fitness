@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Http\Controllers\Controller;
 use App\Contracts\ItemInterface;
-use App\Http\Resources\ItemResource;
+use App\Http\Controllers\Controller;
 
 class ItemController extends Controller
 {
@@ -23,6 +22,8 @@ class ItemController extends Controller
         $this->item_interface = $item_interface;
     }
 
+
+
     /**
      * Display a listing of the resource.
      *
@@ -30,19 +31,7 @@ class ItemController extends Controller
      */
     public function index()
     {
-        return ItemResource::collection(
-            $this->item_interface->getItemsByUser()
-        );
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return $this->item_interface->getItemsByUser();
     }
 
     /**
@@ -62,20 +51,9 @@ class ItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($item_key)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return $this->item_interface->getItemsByItemKey($item_key);
     }
 
     /**
