@@ -5,5 +5,6 @@ namespace App\Contracts;
 interface ItemInterface
 {
     public function getItemsByUser();
-    public function getItemsByItemKey($item_key);
+    public function getItemByItemKey($item_key);
+    public function getItemUsersByItemKey($item_key);
 }
