@@ -15,6 +15,7 @@ use Faker\Generator as Faker;
 
 $factory->define(App\User::class, function (Faker $faker) {
     return [
+        'key' => str_random(5),
         'name' => $faker->name,
         'sex' => $faker->randomElement(['female', 'male', 'intersex']),
         'age' => $faker->numberBetween($min = 18, $max = 60),

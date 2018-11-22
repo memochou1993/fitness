@@ -2,48 +2,27 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use Illuminate\Http\Request;
-use App\Contracts\ItemInterface;
-use App\Http\Controllers\Controller;
 use App\Http\Resources\ItemResource;
+use App\Contracts\Api\V1\ItemInterface;
+use App\Http\Controllers\Api\ApiController;
 
-class ItemController extends Controller
+class ItemController extends ApiController
 {
     /**
      *
      */
-    protected $request;
-
-    /**
-     *
-     */
-    protected $item_interface;
+    protected $items;
 
     /**
      *
      *
      *
      */
-    public function __construct(Request $request, ItemInterface $item_interface)
+    public function __construct(ItemInterface $items)
     {
-        $this->request = $request;
-        $this->item_interface = $item_interface;
-    }
+        parent::__construct();
 
-
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        return ItemResource::collection(
-            $this->item_interface->getItemsByUser()->paginate(
-                (int) $this->request->per_page
-            )
-        );
+        $this->items = $items;
     }
 
     /**
@@ -58,40 +37,15 @@ class ItemController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display a listing of the resource.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($item_key)
     {
         return ItemResource::collection(
-            $this->item_interface->getItemByItemKey($item_key)->paginate(
-                (int) $this->request->per_page
-            )
+            $this->items->getAllItems($item_key)->paginate($this->per_page)
         );
-    }
-
-    /**
-     *
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function showUsers($item_key)
-    {
-        if ($this->item_interface->getItemByItemKey($item_key)->first()) {
-            return ItemResource::collection(
-                $this->item_interface->getItemUsersByItemKey($item_key)->paginate(
-                    (int) $this->request->per_page
-                )
-            );
-        } else {
-            return response([
-                'success' => false,
-                'errors' => 'No query results.',
-            ]);
-        }
     }
 
     /**

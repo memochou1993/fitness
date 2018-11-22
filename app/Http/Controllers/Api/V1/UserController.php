@@ -2,25 +2,27 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Contracts\UserInterface;
-use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
+use App\Contracts\Api\V1\UserInterface;
+use App\Http\Controllers\Api\ApiController;
 
-class UserController extends Controller
+class UserController extends ApiController
 {
     /**
      *
      */
-    protected $user_interface;
+    protected $users;
 
     /**
      *
      *
      *
      */
-    public function __construct(UserInterface $user_interface)
+    public function __construct(UserInterface $users)
     {
-        $this->user_interface = $user_interface;
+        parent::__construct();
+
+        $this->users = $users;
     }
 
     /**

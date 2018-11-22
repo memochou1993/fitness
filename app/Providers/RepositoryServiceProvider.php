@@ -2,10 +2,12 @@
 
 namespace App\Providers;
 
-use App\Contracts\UserInterface;
-use App\Contracts\ItemInterface;
-use App\Repositories\UserRepository;
-use App\Repositories\ItemRepository;
+use App\Contracts\Api\V1\UserInterface;
+use App\Contracts\Api\V1\ItemInterface;
+use App\Contracts\Api\V1\UserItemInterface;
+use App\Repositories\Api\V1\UserRepository;
+use App\Repositories\Api\V1\ItemRepository;
+use App\Repositories\Api\V1\UserItemRepository;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -35,8 +37,8 @@ class RepositoryServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(UserInterface::class, UserRepository::class);
-
         $this->app->bind(ItemInterface::class, ItemRepository::class);
+        $this->app->bind(UserItemInterface::class, UserItemRepository::class);
     }
 
     /**
@@ -49,6 +51,7 @@ class RepositoryServiceProvider extends ServiceProvider
         return [
             UserInterface::class,
             ItemInterface::class,
+            UserItemInterface::class,
         ];
     }
 }

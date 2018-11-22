@@ -12,6 +12,7 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         App\User::create([
+            'key' => 'asdfg',
             'name' => 'Test User',
             'sex' => 'male',
             'age' => 25,

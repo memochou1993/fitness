@@ -17,6 +17,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/items', 'ItemController@index');
-Route::get('/items/{item_key}', 'ItemController@show');
-Route::get('/items/{item_key}/users', 'ItemController@showUsers');
+// Route::get('/users/{user}', 'UserController@show');
+Route::get('/items/{item}', 'ItemController@show');
+
+Route::prefix('/users/{user}/items')->group(function () {
+    Route::get('/', 'UserItemController@index');
+    Route::get('/{item}', 'UserItemController@show');
+});
+
+// Route::prefix('/items/{item}/users')->group(function () {
+//     Route::get('/', 'ItemUserController@index');
+//     Route::get('/{user}', 'ItemUserController@show');
+// });
