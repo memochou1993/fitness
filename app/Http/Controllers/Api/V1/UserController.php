@@ -30,9 +30,11 @@ class UserController extends ApiController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($user_id)
+    public function index()
     {
-        //
+        return UserResource::collection(
+            $this->users->getAllUsers()
+        );
     }
 
     /**
@@ -49,12 +51,14 @@ class UserController extends ApiController
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $user_key
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($user_key)
     {
-        //
+        return UserResource::collection(
+            $this->users->getUser($user_key)
+        );
     }
 
     /**

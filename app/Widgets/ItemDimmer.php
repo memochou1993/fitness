@@ -28,8 +28,8 @@ class ItemDimmer extends BaseDimmer
 
         return view('voyager::dimmer', array_merge($this->config, [
             'icon'   => 'voyager-group',
-            'title'  => $count . ' ' . $string,
-            'text'   => 'You have' . $count . 'items in your database. Click on button below to view all items.',
+            'title'  => "${count} ${string}",
+            'text'   => "You have ${count} items in your database. Click on button below to view all items.",
             'button' => [
                 'text' => 'View all items',
                 'link' => route('voyager.items.index'),

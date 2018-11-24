@@ -10,11 +10,44 @@ class ItemRepository extends ApiRepository implements ItemInterface
 {
     /**
      *
+     */
+    protected $item;
+
+    /**
+     *
      *
      *
      */
-    public function getAllItems($item_key)
+    public function __construct(Item $item)
     {
-        return Item::where('key', $item_key);
+        parent::__construct();
+
+        $this->item = $item;
+    }
+
+    /**
+     *
+     *
+     *
+     */
+    public function getAllItems()
+    {
+        return $this->item->paginate($this->per_page);
+    }
+
+    /**
+     *
+     *
+     *
+     */
+    public function getItem($item_key)
+    {
+        $item = $this->item->where('key', $item_key);
+
+        if ($this->with) {
+            $item->with(explode(',', $this->with));
+        }
+
+        return $item->paginate($this->per_page);
     }
 }

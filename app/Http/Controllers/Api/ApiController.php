@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api;
 
 use App;
-use Request;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -15,11 +14,6 @@ class ApiController extends BaseController
 
     /**
      *
-     */
-    protected $per_page;
-
-    /**
-     *
      *
      *
      */
@@ -28,7 +22,5 @@ class ApiController extends BaseController
         if (! App::environment('local')) {
             $this->middleware('auth:api');
         }
-
-        $this->per_page = (int) Request::input('per_page');
     }
 }

@@ -26,6 +26,18 @@ class ItemController extends ApiController
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        return ItemResource::collection(
+            $this->items->getAllItems()
+        );
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -39,12 +51,13 @@ class ItemController extends ApiController
     /**
      * Display a listing of the resource.
      *
+     * @param  int  $item_key
      * @return \Illuminate\Http\Response
      */
     public function show($item_key)
     {
         return ItemResource::collection(
-            $this->items->getAllItems($item_key)->paginate($this->per_page)
+            $this->items->getItem($item_key)
         );
     }
 
