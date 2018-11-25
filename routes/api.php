@@ -13,17 +13,19 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::resource('/items', 'ItemController')->except([
+    'create', 'edit',
+]);
 
-Route::resource('/items', 'ItemController');
 Route::prefix('/items')->group(function () {
     //
 });
 
-Route::resource('/users', 'UserController');
-Route::prefix('/users/{user}/items')->group(function () {
+Route::resource('/users', 'UserController')->except([
+    'create', 'edit',
+]);
+
+Route::prefix('/users/me/items')->group(function () {
     Route::get('/', 'UserItemController@index');
     Route::get('/{item}', 'UserItemController@show');
 });

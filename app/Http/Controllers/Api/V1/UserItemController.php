@@ -30,10 +30,10 @@ class UserItemController extends ApiController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($user_key)
+    public function index()
     {
         return UserItemResource::collection(
-            $this->user_items->getAllItems($user_key)
+            $this->user_items->getAllItems()
         );
     }
 
@@ -55,10 +55,10 @@ class UserItemController extends ApiController
      * @param  int  $item_key
      * @return \Illuminate\Http\Response
      */
-    public function show($user_key, $item_key)
+    public function show($item_key)
     {
         return UserItemResource::collection(
-            $this->user_items->getItem($user_key, $item_key)
+            $this->user_items->getItem($item_key)
         );
     }
 

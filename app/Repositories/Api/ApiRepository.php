@@ -2,7 +2,10 @@
 
 namespace App\Repositories\Api;
 
+use App;
+use Auth;
 use Request;
+use App\User;
 use App\Repositories\Repository;
 
 class ApiRepository extends Repository
@@ -10,7 +13,7 @@ class ApiRepository extends Repository
     /**
      *
      */
-    protected $with;
+    protected $user;
 
     /**
      *
@@ -26,7 +29,7 @@ class ApiRepository extends Repository
     {
         parent::__construct();
 
-        $this->with = (string) Request::input('with');
+        $this->user = (! App::environment('local')) ? Auth::user() : User::find(1);
 
         $this->per_page = (int) Request::input('per_page');
     }
