@@ -13,19 +13,14 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::resource('/items', 'ItemController')->except([
-    'create', 'edit',
-]);
+Route::prefix('/users/me')->group(function () {
+    Route::get('/', 'UserController@show');
 
-Route::prefix('/items')->group(function () {
-    //
+    Route::prefix('/items')->group(function () {
+        Route::get('/', 'UserItemController@index');
+        Route::get('/{item}', 'UserItemController@show');
+    });
 });
 
-Route::resource('/users', 'UserController')->except([
-    'create', 'edit',
-]);
-
-Route::prefix('/users/me/items')->group(function () {
-    Route::get('/', 'UserItemController@index');
-    Route::get('/{item}', 'UserItemController@show');
-});
+Route::resource('/items', 'ItemController')->only(['index', 'show']);
+Route::resource('/categories', 'CategoryController')->only(['index', 'show']);

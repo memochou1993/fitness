@@ -28,7 +28,7 @@ class UserItemController extends ApiController
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \App\Http\Resources\UserItemResource
      */
     public function index()
     {
@@ -40,10 +40,9 @@ class UserItemController extends ApiController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
         //
     }
@@ -51,9 +50,8 @@ class UserItemController extends ApiController
     /**
      * Display the specified resource.
      *
-     * @param  int  $user_key
-     * @param  int  $item_key
-     * @return \Illuminate\Http\Response
+     * @param  string  $item_key
+     * @return \App\Http\Resources\UserItemResource
      */
     public function show($item_key)
     {
@@ -65,11 +63,10 @@ class UserItemController extends ApiController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  string  $item_id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($item_id)
     {
         //
     }
@@ -77,10 +74,10 @@ class UserItemController extends ApiController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  string  $item_id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($item_id)
     {
         //
     }

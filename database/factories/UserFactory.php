@@ -17,7 +17,7 @@ $factory->define(App\User::class, function (Faker $faker) {
     return [
         'key' => str_random(5),
         'name' => $faker->name,
-        'sex' => $faker->randomElement(['female', 'male', 'intersex']),
+        'sex' => $faker->numberBetween($min = 1, $max = 3),
         'age' => $faker->numberBetween($min = 18, $max = 60),
         'height' => $faker->numberBetween($min = 150, $max = 200),
         'weight' => $faker->randomFloat($nbMaxDecimals = 1, $min = 40.0, $max = 100.0),
