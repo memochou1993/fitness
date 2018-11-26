@@ -18,6 +18,11 @@ class ApiRepository extends Repository
     /**
      *
      */
+    protected $with;
+
+    /**
+     *
+     */
     protected $per_page;
 
     /**
@@ -30,6 +35,8 @@ class ApiRepository extends Repository
         parent::__construct();
 
         $this->user = (! App::environment('local')) ? Auth::user() : User::find(1);
+
+        $this->with = (! Request::input('with')) ? null : explode(',', Request::input('with'));
 
         $this->per_page = (int) Request::input('per_page');
     }

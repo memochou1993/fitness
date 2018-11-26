@@ -2,39 +2,39 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Http\Resources\UserItemResource;
-use App\Contracts\Api\V1\UserItemInterface;
+use App\Http\Resources\UserCategoryResource;
+use App\Contracts\Api\V1\UserCategoryInterface;
 use App\Http\Controllers\Api\ApiController;
 
-class UserItemController extends ApiController
+class UserCategoryController extends ApiController
 {
     /**
      *
      */
-    protected $user_items;
+    protected $user_categories;
 
     /**
      *
      *
      *
      */
-    public function __construct(UserItemInterface $user_items)
+    public function __construct(UserCategoryInterface $user_categories)
     {
         parent::__construct();
 
-        $this->user_items = $user_items;
+        $this->user_categories = $user_categories;
     }
 
     /**
      * Display a listing of the resource.
      *
-     * @return \App\Http\Resources\UserItemResource
+     * @return \App\Http\Resources\UserCategoryResource
      */
     public function index()
     {
         try {
-            return UserItemResource::collection(
-                $this->user_items->getAllItems()
+            return UserCategoryResource::collection(
+                $this->user_categories->getAllCategories()
             );
         } catch (\Exception $e) {
             return response([
@@ -57,14 +57,14 @@ class UserItemController extends ApiController
     /**
      * Display the specified resource.
      *
-     * @param  string  $item_key
-     * @return \App\Http\Resources\UserItemResource
+     * @param  string  $category_key
+     * @return \App\Http\Resources\UserCategoryResource
      */
-    public function show($item_key)
+    public function show($category_key)
     {
         try {
-            return UserItemResource::collection(
-                $this->user_items->getItem($item_key)
+            return UserCategoryResource::collection(
+                $this->user_categories->getCategory($category_key)
             );
         } catch (\Exception $e) {
             return response([
@@ -77,10 +77,10 @@ class UserItemController extends ApiController
     /**
      * Update the specified resource in storage.
      *
-     * @param  string  $item_id
+     * @param  string  $category_id
      * @return \Illuminate\Http\Response
      */
-    public function update($item_id)
+    public function update($category_id)
     {
         //
     }

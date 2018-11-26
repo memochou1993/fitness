@@ -20,6 +20,11 @@ Route::prefix('/users/me')->group(function () {
         Route::get('/', 'UserItemController@index');
         Route::get('/{item}', 'UserItemController@show');
     });
+
+    Route::prefix('/categories')->group(function () {
+        Route::get('/', 'UserCategoryController@index');
+        Route::get('/{category}', 'UserCategoryController@show');
+    });
 });
 
 Route::resource('/items', 'ItemController')->only(['index', 'show']);

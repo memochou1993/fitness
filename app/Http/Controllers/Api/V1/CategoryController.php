@@ -32,9 +32,16 @@ class CategoryController extends ApiController
      */
     public function index()
     {
-        return CategoryResource::collection(
-            $this->categories->getAllCategories()
-        );
+        try {
+            return CategoryResource::collection(
+                $this->categories->getAllCategories()
+            );
+        } catch (\Exception $e) {
+            return response([
+                'success' => false,
+                'errors' => $e->getMessage(),
+            ]);
+        }
     }
 
     /**
@@ -45,8 +52,15 @@ class CategoryController extends ApiController
      */
     public function show($category_key)
     {
-        return CategoryResource::collection(
-            $this->categories->getCategory($category_key)
-        );
+        try {
+            return CategoryResource::collection(
+                $this->categories->getCategory($category_key)
+            );
+        } catch (\Exception $e) {
+            return response([
+                'success' => false,
+                'errors' => $e->getMessage(),
+            ]);
+        }
     }
 }

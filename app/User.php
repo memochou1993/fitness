@@ -40,6 +40,16 @@ class User extends \TCG\Voyager\Models\User
     }
 
     /**
+     * The categories that belong to the user.
+     *
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function categories()
+    {
+        return $this->hasMany(Category::class);
+    }
+
+    /**
      * The items that belong to the user.
      *
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany

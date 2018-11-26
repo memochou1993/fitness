@@ -14,7 +14,13 @@ class UserItemRepository extends ApiRepository implements UserItemInterface
      */
     public function getAllItems()
     {
-        return $this->user->items()->paginate($this->per_page);
+        $items = $this->user->items();
+
+        if ($this->with) {
+            $items->with($this->with);
+        }
+
+        return $items->paginate($this->per_page);
     }
 
     /**
@@ -24,6 +30,12 @@ class UserItemRepository extends ApiRepository implements UserItemInterface
      */
     public function getItem($item_key)
     {
-        return $this->user->items()->where('key', $item_key)->paginate($this->per_page);
+        $items = $this->user->items();
+
+        if ($this->with) {
+            $items->with($this->with);
+        }
+
+        return $items->where('key', $item_key)->paginate($this->per_page);
     }
 }
