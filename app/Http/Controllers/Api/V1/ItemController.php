@@ -26,18 +26,6 @@ class ItemController extends ApiController
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \App\Http\Resources\ItemResource
-     */
-    public function index()
-    {
-        return ItemResource::collection(
-            $this->items->getAllItems()
-        );
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  string  $item_key

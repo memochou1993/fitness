@@ -30,16 +30,6 @@ class CategoryRepository extends ApiRepository implements CategoryInterface
      *
      *
      */
-    public function getAllCategories()
-    {
-        return $this->categories->paginate($this->per_page);
-    }
-
-    /**
-     *
-     *
-     *
-     */
     public function getCategory($category_key)
     {
         return $this->categories->where('key', $category_key)->paginate($this->per_page);

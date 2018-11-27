@@ -26,25 +26,6 @@ class CategoryController extends ApiController
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        try {
-            return CategoryResource::collection(
-                $this->categories->getAllCategories()
-            );
-        } catch (\Exception $e) {
-            return response([
-                'success' => false,
-                'errors' => $e->getMessage(),
-            ]);
-        }
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  string  $category_key
@@ -52,15 +33,8 @@ class CategoryController extends ApiController
      */
     public function show($category_key)
     {
-        try {
-            return CategoryResource::collection(
-                $this->categories->getCategory($category_key)
-            );
-        } catch (\Exception $e) {
-            return response([
-                'success' => false,
-                'errors' => $e->getMessage(),
-            ]);
-        }
+        return CategoryResource::collection(
+            $this->categories->getCategory($category_key)
+        );
     }
 }

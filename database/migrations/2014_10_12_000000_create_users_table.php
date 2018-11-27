@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->integer('sex')->unsigned()->nullable();
             $table->integer('age')->unsigned()->nullable();
             $table->integer('height')->unsigned()->nullable();
-            $table->decimal('weight', 3, 1)->nullable();
+            $table->decimal('weight', 4, 1)->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

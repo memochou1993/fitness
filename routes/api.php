@@ -27,5 +27,5 @@ Route::prefix('/users/me')->group(function () {
     });
 });
 
-Route::resource('/items', 'ItemController')->only(['index', 'show']);
-Route::resource('/categories', 'CategoryController')->only(['index', 'show']);
+Route::get('/items/{item}', 'ItemController@show');
+Route::get('/categories/{category}', 'CategoryController@show');
