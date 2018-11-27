@@ -9,10 +9,10 @@ class Helper
      *
      *
      */
-    public static function response($success, $data, $errors = null) {
+    public static function response($success, $errors) {
         return response([
             'success' => $success,
-            'data' => $data,
+            'data' => [],
             'errors' => $errors,
         ]);
     }

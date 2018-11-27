@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use App\Helpers\Helper;
 use Illuminate\Support\Facades\Validator;
 
 class VerifyParameters
@@ -25,10 +26,7 @@ class VerifyParameters
         ]);
 
         if ($validator->fails()) {
-            return response([
-                'success' => false,
-                'errors' => $validator->errors(),
-            ]);
+            return Helper::response(false, $validator->errors());
         }
 
         return $next($request);
