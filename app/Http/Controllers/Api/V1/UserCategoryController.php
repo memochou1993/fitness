@@ -88,10 +88,10 @@ class UserCategoryController extends ApiController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  string  $item_id
+     * @param  string  $category_id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($item_id)
+    public function destroy($category_id)
     {
         //
     }

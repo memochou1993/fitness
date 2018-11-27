@@ -45,7 +45,7 @@ class CategoryController extends ApiController
     }
 
     /**
-     * Display a listing of the resource.
+     * Display the specified resource.
      *
      * @param  string  $category_key
      * @return \Illuminate\Http\Response

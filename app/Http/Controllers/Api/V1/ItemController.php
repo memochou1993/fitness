@@ -38,7 +38,7 @@ class ItemController extends ApiController
     }
 
     /**
-     * Display a listing of the resource.
+     * Display the specified resource.
      *
      * @param  string  $item_key
      * @return \App\Http\Resources\ItemResource
