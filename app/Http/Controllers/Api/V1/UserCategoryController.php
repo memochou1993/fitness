@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Http\Resources\UserCategoryResource;
+use App\Http\Resources\UserCategoryCollection;
 use App\Contracts\Api\V1\UserCategoryInterface;
 use App\Http\Controllers\Api\ApiController;
 
@@ -28,19 +28,14 @@ class UserCategoryController extends ApiController
     /**
      * Display a listing of the resource.
      *
-     * @return \App\Http\Resources\UserCategoryResource
+     * @return \App\Http\Resources\UserCategoryCollection
      */
     public function index()
     {
         try {
-            return UserCategoryResource::collection(
-                $this->user_categories->getAllCategories()
-            );
+            return new UserCategoryCollection($this->user_categories->getAllCategories());
         } catch (\Exception $e) {
-            return response([
-                'success' => false,
-                'errors' => $e->getMessage(),
-            ]);
+            return Helper::response(false, $e->getMessage());
         }
     }
 
@@ -58,19 +53,14 @@ class UserCategoryController extends ApiController
      * Display the specified resource.
      *
      * @param  string  $category_key
-     * @return \App\Http\Resources\UserCategoryResource
+     * @return \App\Http\Resources\UserCategoryCollection
      */
     public function show($category_key)
     {
         try {
-            return UserCategoryResource::collection(
-                $this->user_categories->getCategory($category_key)
-            );
+            return new UserCategoryCollection($this->user_categories->getCategory($category_key));
         } catch (\Exception $e) {
-            return response([
-                'success' => false,
-                'errors' => $e->getMessage(),
-            ]);
+            return Helper::response(false, $e->getMessage());
         }
     }
 

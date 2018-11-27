@@ -17,9 +17,6 @@ class CreateConditionsTable extends Migration
             $table->increments('id');
             $table->date('date');
             $table->decimal('weight', 4, 1)->nullable();
-            $table->decimal('BMI', 3, 1)->nullable();
-            $table->decimal('BFP', 2, 1)->nullable();
-            $table->decimal('BMR', 5, 1)->nullable();
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

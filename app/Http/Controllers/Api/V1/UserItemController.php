@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Http\Resources\UserItemResource;
+use App\Helpers\Helper;
+use App\Http\Resources\UserItemCollection;
 use App\Contracts\Api\V1\UserItemInterface;
 use App\Http\Controllers\Api\ApiController;
 
@@ -28,19 +29,14 @@ class UserItemController extends ApiController
     /**
      * Display a listing of the resource.
      *
-     * @return \App\Http\Resources\UserItemResource
+     * @return \App\Http\Resources\UserItemCollection
      */
     public function index()
     {
         try {
-            return UserItemResource::collection(
-                $this->user_items->getAllItems()
-            );
+            return new UserItemCollection($this->user_items->getAllItems());
         } catch (\Exception $e) {
-            return response([
-                'success' => false,
-                'errors' => $e->getMessage(),
-            ]);
+            return Helper::response(false, $e->getMessage());
         }
     }
 
@@ -58,19 +54,14 @@ class UserItemController extends ApiController
      * Display the specified resource.
      *
      * @param  string  $item_key
-     * @return \App\Http\Resources\UserItemResource
+     * @return \App\Http\Resources\UserItemCollection
      */
     public function show($item_key)
     {
         try {
-            return UserItemResource::collection(
-                $this->user_items->getItem($item_key)
-            );
+            return new UserItemCollection($this->user_items->getItem($item_key));
         } catch (\Exception $e) {
-            return response([
-                'success' => false,
-                'errors' => $e->getMessage(),
-            ]);
+            return Helper::response(false, $e->getMessage());
         }
     }
 
