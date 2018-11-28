@@ -12,18 +12,18 @@ class UserItemController extends ApiController
     /**
      *
      */
-    protected $user_items;
+    protected $repository;
 
     /**
      *
      *
      *
      */
-    public function __construct(UserItemInterface $user_items)
+    public function __construct(UserItemInterface $repository)
     {
         parent::__construct();
 
-        $this->user_items = $user_items;
+        $this->repository = $repository;
     }
 
     /**
@@ -34,7 +34,7 @@ class UserItemController extends ApiController
     public function index()
     {
         try {
-            return new UserItemCollection($this->user_items->getAllItems());
+            return new UserItemCollection($this->repository->getAllItems());
         } catch (\Exception $e) {
             return Response::error($e->getMessage());
         }
@@ -59,7 +59,7 @@ class UserItemController extends ApiController
     public function show($item_key)
     {
         try {
-            return new UserItemCollection($this->user_items->getItem($item_key));
+            return new UserItemCollection($this->repository->getItem($item_key));
         } catch (\Exception $e) {
             return Response::error($e->getMessage());
         }

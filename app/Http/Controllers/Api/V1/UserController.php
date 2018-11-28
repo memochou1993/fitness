@@ -12,18 +12,18 @@ class UserController extends ApiController
     /**
      *
      */
-    protected $users;
+    protected $repository;
 
     /**
      *
      *
      *
      */
-    public function __construct(UserInterface $users)
+    public function __construct(UserInterface $repository)
     {
         parent::__construct();
 
-        $this->users = $users;
+        $this->repository = $repository;
     }
 
     /**
@@ -43,7 +43,7 @@ class UserController extends ApiController
      */
     public function show()
     {
-        return Response::success($this->users->getUser());
+        return Response::success($this->repository->getUser());
     }
 
     /**

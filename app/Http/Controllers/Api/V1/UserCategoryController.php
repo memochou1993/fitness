@@ -12,18 +12,18 @@ class UserCategoryController extends ApiController
     /**
      *
      */
-    protected $user_categories;
+    protected $repository;
 
     /**
      *
      *
      *
      */
-    public function __construct(UserCategoryInterface $user_categories)
+    public function __construct(UserCategoryInterface $repository)
     {
         parent::__construct();
 
-        $this->user_categories = $user_categories;
+        $this->repository = $repository;
     }
 
     /**
@@ -34,7 +34,7 @@ class UserCategoryController extends ApiController
     public function index()
     {
         try {
-            return new UserCategoryCollection($this->user_categories->getAllCategories());
+            return new UserCategoryCollection($this->repository->getAllCategories());
         } catch (\Exception $e) {
             return Response::error($e->getMessage());
         }
@@ -59,7 +59,7 @@ class UserCategoryController extends ApiController
     public function show($category_key)
     {
         try {
-            return new UserCategoryCollection($this->user_categories->getCategory($category_key));
+            return new UserCategoryCollection($this->repository->getCategory($category_key));
         } catch (\Exception $e) {
             return Response::error($e->getMessage());
         }

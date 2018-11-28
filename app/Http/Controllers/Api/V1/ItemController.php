@@ -11,18 +11,18 @@ class ItemController extends ApiController
     /**
      *
      */
-    protected $items;
+    protected $repository;
 
     /**
      *
      *
      *
      */
-    public function __construct(ItemInterface $items)
+    public function __construct(ItemInterface $repository)
     {
         parent::__construct();
 
-        $this->items = $items;
+        $this->repository = $repository;
     }
 
     /**
@@ -33,6 +33,6 @@ class ItemController extends ApiController
      */
     public function show($item_key)
     {
-        return new ItemCollection($this->items->getItem($item_key));
+        return new ItemCollection($this->repository->getItem($item_key));
     }
 }
