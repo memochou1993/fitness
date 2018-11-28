@@ -11,18 +11,18 @@ class CategoryController extends ApiController
     /**
      *
      */
-    protected $categories;
+    protected $repository;
 
     /**
      *
      *
      *
      */
-    public function __construct(CategoryInterface $categories)
+    public function __construct(CategoryInterface $repository)
     {
         parent::__construct();
 
-        $this->categories = $categories;
+        $this->repository = $repository;
     }
 
     /**
@@ -33,6 +33,6 @@ class CategoryController extends ApiController
      */
     public function show($category_key)
     {
-        return new CategoryCollection($this->categories->getCategory($category_key));
+        return new CategoryCollection($this->repository->getCategory($category_key));
     }
 }
