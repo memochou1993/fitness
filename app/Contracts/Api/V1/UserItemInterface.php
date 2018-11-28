@@ -6,4 +6,5 @@ interface UserItemInterface
 {
     public function getAllItems();
     public function getItem($item_key);
+    public function storeItems();
 }

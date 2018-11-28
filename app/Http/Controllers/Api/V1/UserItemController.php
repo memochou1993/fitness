@@ -47,7 +47,7 @@ class UserItemController extends ApiController
      */
     public function store()
     {
-        //
+        $this->user_items->storeItems();
     }
 
     /**

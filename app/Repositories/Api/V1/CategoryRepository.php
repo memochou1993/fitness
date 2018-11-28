@@ -11,18 +11,18 @@ class CategoryRepository extends ApiRepository implements CategoryInterface
     /**
      *
      */
-    protected $categories;
+    protected $category;
 
     /**
      *
      *
      *
      */
-    public function __construct(Category $categories)
+    public function __construct(Category $category)
     {
         parent::__construct();
 
-        $this->categories = $categories;
+        $this->category = $category;
     }
 
     /**
@@ -32,6 +32,6 @@ class CategoryRepository extends ApiRepository implements CategoryInterface
      */
     public function getCategory($category_key)
     {
-        return $this->categories->where('key', $category_key)->paginate($this->per_page);
+        return $this->category->where('key', $category_key)->paginate($this->per_page);
     }
 }

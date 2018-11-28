@@ -2,11 +2,37 @@
 
 namespace App\Repositories\Api\V1;
 
+use App\Item;
+use Illuminate\Http\Request;
 use App\Repositories\Api\ApiRepository;
 use App\Contracts\Api\V1\UserItemInterface;
 
 class UserItemRepository extends ApiRepository implements UserItemInterface
 {
+    /**
+     *
+     */
+    protected $request;
+
+    /**
+     *
+     */
+    protected $item;
+
+    /**
+     *
+     *
+     *
+     */
+    public function __construct(Request $request, Item $item)
+    {
+        parent::__construct();
+
+        $this->request = $request;
+
+        $this->item = $item;
+    }
+
     /**
      *
      *
@@ -37,5 +63,24 @@ class UserItemRepository extends ApiRepository implements UserItemInterface
         }
 
         return $items->where('key', $item_key)->paginate($this->per_page);
+    }
+
+    /**
+     *
+     *
+     *
+     */
+    public function storeItems()
+    {
+        $this->item->create([
+            'key' => substr(md5(now()), 0, 6),
+            'name' => $this->request->name,
+            'unit' => $this->request->unit,
+            'category_id' => $this->request->category_id,
+        ])->users()->attach([
+            $this->user->id => [
+                'frequency' => $this->request->frequency,
+            ]
+        ]);
     }
 }

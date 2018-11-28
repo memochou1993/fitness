@@ -16,16 +16,15 @@ use Illuminate\Http\Request;
 Route::prefix('/users/me')->group(function () {
     Route::get('/', 'UserController@show');
 
-    Route::prefix('/items')->group(function () {
-        Route::get('/', 'UserItemController@index');
-        Route::get('/{item}', 'UserItemController@show');
-    });
+    Route::resource('/items', 'UserItemController')
+         ->except(['create', 'edit']);
 
-    Route::prefix('/categories')->group(function () {
-        Route::get('/', 'UserCategoryController@index');
-        Route::get('/{category}', 'UserCategoryController@show');
-    });
+    Route::resource('/categories', 'UserCategoryController')
+         ->except(['create', 'edit']);
 });
 
-Route::get('/items/{item}', 'ItemController@show');
-Route::get('/categories/{category}', 'CategoryController@show');
+Route::resource('/items', 'ItemController')
+     ->only(['show']);
+
+Route::resource('/categories', 'CategoryController')
+     ->only(['show']);
