@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Helpers\Helper;
+use App\Helpers\Response;
 use App\Http\Resources\UserCollection;
 use App\Contracts\Api\V1\UserInterface;
 use App\Http\Controllers\Api\ApiController;
@@ -43,7 +43,7 @@ class UserController extends ApiController
      */
     public function show()
     {
-        return Helper::response(true, $this->users->getUser());
+        return Response::success($this->users->getUser());
     }
 
     /**

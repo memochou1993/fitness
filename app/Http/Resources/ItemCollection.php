@@ -15,7 +15,7 @@ class ItemCollection extends ResourceCollection
     public function toArray($request)
     {
         return [
-            'success' => true,
+            'status' => 'success',
             'data' => $this->collection,
         ];
     }

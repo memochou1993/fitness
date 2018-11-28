@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Helpers\Helper;
+use App\Helpers\Response;
 use App\Http\Resources\UserItemCollection;
 use App\Contracts\Api\V1\UserItemInterface;
 use App\Http\Controllers\Api\ApiController;
@@ -36,7 +36,7 @@ class UserItemController extends ApiController
         try {
             return new UserItemCollection($this->user_items->getAllItems());
         } catch (\Exception $e) {
-            return Helper::response(false, $e->getMessage());
+            return Response::error($e->getMessage());
         }
     }
 
@@ -61,7 +61,7 @@ class UserItemController extends ApiController
         try {
             return new UserItemCollection($this->user_items->getItem($item_key));
         } catch (\Exception $e) {
-            return Helper::response(false, $e->getMessage());
+            return Response::error($e->getMessage());
         }
     }
 
