@@ -4,7 +4,7 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 
-class ItemControllerTest extends TestCase
+class CategoryControllerTest extends TestCase
 {
     /**
      *
@@ -15,7 +15,7 @@ class ItemControllerTest extends TestCase
     {
         $response = $this->withHeaders([
             'Accept' => 'application/json',
-        ])->json('GET', '/api/items/key', [
+        ])->json('GET', '/api/categories/key', [
             //
         ]);
 
@@ -26,7 +26,7 @@ class ItemControllerTest extends TestCase
                 'data' => [
                     [
                         'key' => 'key',
-                        'name' => 'Test Item',
+                        'name' => 'Test Category',
                     ],
                 ],
             ]);
