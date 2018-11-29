@@ -15,16 +15,8 @@ use Illuminate\Http\Request;
 
 Route::prefix('/users/me')->group(function () {
     Route::get('/', 'UserController@show');
-
-    Route::prefix('/items')->group(function () {
-        Route::get('/', 'UserItemController@index');
-        Route::get('/{item}', 'UserItemController@show');
-    });
-
-    Route::prefix('/categories')->group(function () {
-        Route::get('/', 'UserCategoryController@index');
-        Route::get('/{category}', 'UserCategoryController@show');
-    });
+    Route::resource('/items', 'UserItemController')->except(['create', 'edit']);
+    Route::resource('/categories', 'UserCategoryController')->except(['create', 'edit']);
 });
 
 Route::get('/items/{item}', 'ItemController@show');

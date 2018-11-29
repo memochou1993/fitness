@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use Exception;
 use App\Helpers\Response;
 use App\Http\Resources\UserItemCollection;
 use App\Contracts\Api\V1\UserItemInterface;
 use App\Http\Controllers\Api\ApiController;
+use App\Http\Requests\Api\V1\UserItemRequest;
 
 class UserItemController extends ApiController
 {
@@ -16,14 +18,21 @@ class UserItemController extends ApiController
 
     /**
      *
+     */
+    protected $request;
+
+    /**
+     *
      *
      *
      */
-    public function __construct(UserItemInterface $repository)
+    public function __construct(UserItemInterface $repository, UserItemRequest $request)
     {
         parent::__construct();
 
         $this->repository = $repository;
+
+        $this->request = $request;
     }
 
     /**
@@ -33,9 +42,13 @@ class UserItemController extends ApiController
      */
     public function index()
     {
+        if ($this->request->validator) {
+            return Response::fail($this->request->validator->errors());
+        }
+
         try {
             return new UserItemCollection($this->repository->getAllItems());
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return Response::error($e->getMessage());
         }
     }
@@ -47,7 +60,11 @@ class UserItemController extends ApiController
      */
     public function store()
     {
-        //
+        if ($this->request->validator) {
+            return Response::fail($this->request->validator->errors());
+        }
+
+        return Response::success([]);
     }
 
     /**
@@ -58,9 +75,13 @@ class UserItemController extends ApiController
      */
     public function show($item_key)
     {
+        if ($this->request->validator) {
+            return Response::fail($this->request->validator->errors());
+        }
+        
         try {
             return new UserItemCollection($this->repository->getItem($item_key));
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return Response::error($e->getMessage());
         }
     }
