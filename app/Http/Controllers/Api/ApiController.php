@@ -19,7 +19,7 @@ class ApiController extends BaseController
      */
     public function __construct()
     {
-        if (! App::environment('local')) {
+        if (App::environment('production')) {
             $this->middleware('auth:api');
         }
     }

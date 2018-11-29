@@ -11,6 +11,13 @@ class ItemsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Item::class, 5)->create();
+        App\Item::create([
+            'key' => 'key',
+            'name' => 'Item',
+            'unit' => 1,
+            'category_id' => 1,
+        ]);
+
+        factory(App\Item::class, 4)->create();
     }
 }

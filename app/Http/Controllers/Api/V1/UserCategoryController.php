@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use Exception;
 use App\Helpers\Response;
 use App\Http\Resources\UserCategoryCollection;
 use App\Contracts\Api\V1\UserCategoryInterface;
@@ -35,7 +36,7 @@ class UserCategoryController extends ApiController
     {
         try {
             return new UserCategoryCollection($this->repository->getAllCategories());
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return Response::error($e->getMessage());
         }
     }
@@ -60,7 +61,7 @@ class UserCategoryController extends ApiController
     {
         try {
             return new UserCategoryCollection($this->repository->getCategory($category_key));
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return Response::error($e->getMessage());
         }
     }
