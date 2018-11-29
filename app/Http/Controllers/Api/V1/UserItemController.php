@@ -64,9 +64,7 @@ class UserItemController extends ApiController
             return Response::fail($this->request->validator->errors());
         }
 
-        $this->user_items->storeItems();
-
-        return Response::success([]);
+        return Response::success($this->repository->postItem(), 201);
     }
 
     /**

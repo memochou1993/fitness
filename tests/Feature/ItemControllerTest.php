@@ -24,7 +24,6 @@ class ItemControllerTest extends TestCase
      */
     public function testShow()
     {
-        $this->assertTrue(true);
         $response = $this->withHeaders([
             'Accept' => 'application/json',
         ])->json('GET', '/api/items/key', [

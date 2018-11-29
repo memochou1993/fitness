@@ -11,6 +11,12 @@ class ConditionsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Condition::class, 5)->create();
+        App\Condition::create([
+            'date' => '2018-11-20',
+            'weight' => 70.0,
+            'user_id' => 1,
+        ]);
+
+        factory(App\Condition::class, 4)->create();
     }
 }

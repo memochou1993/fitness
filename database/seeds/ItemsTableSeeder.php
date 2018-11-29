@@ -13,7 +13,7 @@ class ItemsTableSeeder extends Seeder
     {
         App\Item::create([
             'key' => 'key',
-            'name' => 'Item',
+            'name' => 'Test Item',
             'unit' => 1,
             'category_id' => 1,
         ]);

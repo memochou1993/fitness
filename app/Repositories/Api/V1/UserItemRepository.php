@@ -70,17 +70,21 @@ class UserItemRepository extends ApiRepository implements UserItemInterface
      *
      *
      */
-    public function storeItems()
+    public function postItem()
     {
-        $this->item->create([
-            'key' => substr(md5(now()), 0, 6),
+        $item = $this->item->create([
+            'key' => substr(md5(now()), 0, 5),
             'name' => $this->request->name,
             'unit' => $this->request->unit,
             'category_id' => $this->request->category_id,
-        ])->users()->attach([
+        ]);
+
+        $item->users()->attach([
             $this->user->id => [
                 'frequency' => $this->request->frequency,
             ]
         ]);
+
+        return $item;
     }
 }

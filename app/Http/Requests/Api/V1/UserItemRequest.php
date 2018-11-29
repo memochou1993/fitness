@@ -13,38 +13,30 @@ class UserItemRequest extends ApiRequest
      */
     public function rules()
     {
-        switch($this->method())
-        {
+        switch($this->method()) {
             case 'GET':
-            {
                 return [
                     'per_page' => 'min:1|integer',
                 ];
-            }
 
             case 'POST':
-            {
                 return [
                     'name' => 'required|max:255',
                     'unit' => 'required|max:255',
-                    'category_key' => 'required|max:255',
+                    'category_id' => 'required|integer|max:255',
+                    'frequency' => 'required|max:255',
                 ];
-            }
-            
+
             case 'PUT':
             case 'PATCH':
-            {
                 return [
                     //
                 ];
-            }
 
             default:
-            {
                 return [
                     //
                 ];
-            };
         }
     }
 }

@@ -13,7 +13,7 @@ class UsersTableSeeder extends Seeder
     {
         App\User::create([
             'key' => 'key',
-            'name' => 'User',
+            'name' => 'Test User',
             'sex' => 1,
             'age' => 25,
             'height' => 180,
