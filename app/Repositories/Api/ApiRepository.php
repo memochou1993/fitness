@@ -36,8 +36,13 @@ class ApiRepository extends Repository
 
         $this->user = (! App::environment('local')) ? Auth::user() : User::find(1);
 
+        $this->castParams();
+    }
+
+    protected function castParams()
+    {
         $this->with = (! Request::input('with')) ? null : explode(',', Request::input('with'));
 
-        $this->per_page = Request::input('per_page');
+        $this->per_page = (int) Request::input('per_page');
     }
 }
