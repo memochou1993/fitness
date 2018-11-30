@@ -25,6 +25,16 @@ class UserItem extends Model
     ];
 
     /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'frequency' => 'float',
+        'completed' => 'boolean',
+    ];
+
+    /**
      *
      *
      *

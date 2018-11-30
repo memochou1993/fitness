@@ -25,8 +25,13 @@ class UserControllerTest extends TestCase
             'status' => 'success',
             'data' => [
                 [
-                    'key' => config('seeds.user.key', 'key'),
-                    'name' => config('seeds.user.name', 'name'),
+                    'key' => config('seed.user.key'),
+                    'name' => config('seed.user.name'),
+                    'sex' => config('seed.user.sex'),
+                    'age' => config('seed.user.age'),
+                    'height' => config('seed.user.height'),
+                    'weight' => config('seed.user.weight'),
+                    'email' => config('seed.user.email'),
                 ],
             ],
         ])->assertStatus(200);

@@ -25,14 +25,16 @@ class UserItemControllerTest extends TestCase
             'status' => 'success',
             'data' => [
                 [
-                    'key' => 'key',
-                    'name' => 'Test Item',
+                    'key' => config('seed.item.key'),
+                    'name' => config('seed.item.name'),
+                    'unit' => config('seed.item.unit'),
                     'category' => [
-                        'key' => 'key',
-                        'name' => 'Test Category',
+                        'key' => config('seed.category.key'),
+                        'name' => config('seed.category.name'),
                     ],
                     'pivot' => [
-                        'frequency' => 0.5,
+                        'frequency' => config('seed.user_item.frequency'),
+                        'completed' => config('seed.user_item.completed'),
                     ],
                 ],
             ],
@@ -95,17 +97,19 @@ class UserItemControllerTest extends TestCase
         $response = $this->withHeaders([
             'Accept' => 'application/json',
         ])->json('POST', '/api/users/me/items', [
-            'name' => 'new Test Item',
-            'unit' => 'new unit',
-            'category_id' => 1,
-            'frequency' => 1.0,
+            'name' => 'new ' . config('seed.item.name'),
+            'unit' => config('seed.item.unit'),
+            'category_id' => config('seed.category.id'),
+            'frequency' => config('seed.user_item.frequency'),
         ]);
 
         $response->assertJson([
             'status' => 'success',
             'data' => [
                 [
-                    'name' => 'new Test Item',
+                    'name' => 'new ' . config('seed.item.name'),
+                    'unit' => config('seed.item.unit'),
+                    'category_id' => config('seed.category.id'),
                 ],
             ],
         ])->assertStatus(201);
@@ -128,14 +132,16 @@ class UserItemControllerTest extends TestCase
             'status' => 'success',
             'data' => [
                 [
-                    'key' => 'key',
-                    'name' => 'Test Item',
+                    'key' => config('seed.item.key'),
+                    'name' => config('seed.item.name'),
+                    'unit' => config('seed.item.unit'),
                     'category' => [
-                        'key' => 'key',
-                        'name' => 'Test Category',
+                        'key' => config('seed.category.key'),
+                        'name' => config('seed.category.name'),
                     ],
                     'pivot' => [
-                        'frequency' => 0.5,
+                        'frequency' => config('seed.user_item.frequency'),
+                        'completed' => config('seed.user_item.completed'),
                     ],
                 ],
             ],

@@ -23,8 +23,9 @@ class ItemControllerTest extends TestCase
             'status' => 'success',
             'data' => [
                 [
-                    'key' => 'key',
-                    'name' => 'Test Item',
+                    'key' => config('seed.item.key'),
+                    'name' => config('seed.item.name'),
+                    'unit' => config('seed.item.unit'),
                 ],
             ],
         ])->assertStatus(200);

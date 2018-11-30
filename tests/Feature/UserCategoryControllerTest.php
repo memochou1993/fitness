@@ -25,12 +25,13 @@ class UserCategoryControllerTest extends TestCase
             'status' => 'success',
             'data' => [
                 [
-                    'key' => 'key',
-                    'name' => 'Test Category',
+                    'key' => config('seed.category.key'),
+                    'name' => config('seed.category.name'),
                     'items' => [
                         [
-                            'key' => 'key',
-                            'name' => 'Test Item',
+                            'key' => config('seed.item.key'),
+                            'name' => config('seed.item.name'),
+                            'unit' => config('seed.item.unit'),
                         ],
                     ],
                 ],
@@ -101,12 +102,13 @@ class UserCategoryControllerTest extends TestCase
             'status' => 'success',
             'data' => [
                 [
-                    'key' => 'key',
-                    'name' => 'Test Category',
+                    'key' => config('seed.category.key'),
+                    'name' => config('seed.category.name'),
                     'items' => [
                         [
-                            'key' => 'key',
-                            'name' => 'Test Item',
+                            'key' => config('seed.item.key'),
+                            'name' => config('seed.item.name'),
+                            'unit' => config('seed.item.unit'),
                         ],
                     ],
                 ],

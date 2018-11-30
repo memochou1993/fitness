@@ -15,10 +15,10 @@ return [
         'id' => 1,
         'key' => 'key',
         'name' => 'Test User',
-        'sex' => 0.5,
+        'sex' => 1,
         'age' => 25,
         'height' => 180,
-        'weight' => 65.0,
+        'weight' => 65,
         'email' => 'homestead@test.com',
         'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
     ],
@@ -44,7 +44,8 @@ return [
     ],
 
     'user_item' => [
-        'frequency' => 0.5
+        'frequency' => 0.5,
+        'completed' => false,
     ],
 
 ];

@@ -23,8 +23,8 @@ class CategoryControllerTest extends TestCase
             'status' => 'success',
             'data' => [
                 [
-                    'key' => 'key',
-                    'name' => 'Test Category',
+                    'key' => config('seed.category.key'),
+                    'name' => config('seed.category.name'),
                 ],
             ],
         ])->assertStatus(200);

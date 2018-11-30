@@ -13,8 +13,8 @@ class CategoriesTableSeeder extends Seeder
     public function run()
     {
         Category::create([
-            'key' => config('seed.item.key'),
-            'name' => config('seed.item.name'),
+            'key' => config('seed.category.key'),
+            'name' => config('seed.category.name'),
             'user_id' => config('seed.user.id'),
         ]);
 
