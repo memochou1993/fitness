@@ -19,16 +19,14 @@ class CategoryControllerTest extends TestCase
             //
         ]);
 
-        $response
-            ->assertStatus(200)
-            ->assertJson([
-                'status' => 'success',
-                'data' => [
-                    [
-                        'key' => 'key',
-                        'name' => 'Test Category',
-                    ],
+        $response->assertJson([
+            'status' => 'success',
+            'data' => [
+                [
+                    'key' => 'key',
+                    'name' => 'Test Category',
                 ],
-            ]);
+            ],
+        ])->assertStatus(200);
     }
 }

@@ -21,16 +21,14 @@ class UserControllerTest extends TestCase
             //
         ]);
 
-        $response
-            ->assertStatus(200)
-            ->assertJson([
-                'status' => 'success',
-                'data' => [
-                    [
-                        'key' => 'key',
-                        'name' => 'Test User',
-                    ],
+        $response->assertJson([
+            'status' => 'success',
+            'data' => [
+                [
+                    'key' => 'key',
+                    'name' => 'Test User',
                 ],
-            ]);
+            ],
+        ])->assertStatus(200);
     }
 }

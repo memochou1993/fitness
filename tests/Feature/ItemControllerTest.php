@@ -19,16 +19,14 @@ class ItemControllerTest extends TestCase
             //
         ]);
 
-        $response
-            ->assertStatus(200)
-            ->assertJson([
-                'status' => 'success',
-                'data' => [
-                    [
-                        'key' => 'key',
-                        'name' => 'Test Item',
-                    ],
+        $response->assertJson([
+            'status' => 'success',
+            'data' => [
+                [
+                    'key' => 'key',
+                    'name' => 'Test Item',
                 ],
-            ]);
+            ],
+        ])->assertStatus(200);
     }
 }
