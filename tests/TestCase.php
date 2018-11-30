@@ -24,7 +24,7 @@ abstract class TestCase extends BaseTestCase
         Artisan::call('db:seed');
 
         Passport::actingAs(
-            User::find(1)
+            User::find(config('seeds.users.id'))
         );
     }
 

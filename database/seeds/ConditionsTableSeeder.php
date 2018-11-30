@@ -13,12 +13,12 @@ class ConditionsTableSeeder extends Seeder
     public function run()
     {
         Condition::create([
-            'key' => config('seed.condition.key'),
-            'date' => config('seed.condition.date'),
-            'weight' => config('seed.condition.weight'),
-            'user_id' => config('seed.user.id'),
+            'key' => config('seeds.conditions.key'),
+            'date' => config('seeds.conditions.date'),
+            'weight' => config('seeds.conditions.weight'),
+            'user_id' => config('seeds.users.id'),
         ]);
 
-        factory(Condition::class, config('factory.condition.number'))->create();
+        factory(Condition::class, config('factories.condition.number'))->create();
     }
 }

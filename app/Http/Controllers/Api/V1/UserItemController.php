@@ -83,11 +83,7 @@ class UserItemController extends ApiController
     public function show($item_key)
     {
         if ($this->errors) {
-            return response(
-                [
-                    'errors' => $this->errors
-                ]
-            );
+            return Response::fail($this->errors);
         }
 
         try {

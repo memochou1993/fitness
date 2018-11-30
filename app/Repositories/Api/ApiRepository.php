@@ -34,7 +34,7 @@ class ApiRepository extends Repository
     {
         parent::__construct();
 
-        $this->user = (! App::environment('local')) ? Auth::user() : User::find(1);
+        $this->user = (! App::environment('local')) ? Auth::user() : User::find(config('seeds.users.id'));
 
         $this->castParams();
     }

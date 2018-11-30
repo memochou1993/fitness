@@ -15,7 +15,7 @@ class CategoryControllerTest extends TestCase
     {
         $response = $this->withHeaders([
             'Accept' => 'application/json',
-        ])->json('GET', '/api/categories/key', [
+        ])->json('GET', '/api/categories/' . config('seeds.categories.key'), [
             //
         ]);
 
@@ -23,8 +23,8 @@ class CategoryControllerTest extends TestCase
             'status' => 'success',
             'data' => [
                 [
-                    'key' => config('seed.category.key'),
-                    'name' => config('seed.category.name'),
+                    'key' => config('seeds.categories.key'),
+                    'name' => config('seeds.categories.name'),
                 ],
             ],
         ])->assertStatus(200);

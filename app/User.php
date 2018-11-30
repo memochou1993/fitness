@@ -32,18 +32,6 @@ class User extends \TCG\Voyager\Models\User
     ];
 
     /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'sex' => 'integer',
-        'age' => 'integer',
-        'height' => 'integer',
-        'weight' => 'float',
-    ];
-
-    /**
      *
      *
      *

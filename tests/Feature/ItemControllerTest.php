@@ -15,7 +15,7 @@ class ItemControllerTest extends TestCase
     {
         $response = $this->withHeaders([
             'Accept' => 'application/json',
-        ])->json('GET', '/api/items/key', [
+        ])->json('GET', '/api/items/' . config('seeds.items.key'), [
             //
         ]);
 
@@ -23,9 +23,9 @@ class ItemControllerTest extends TestCase
             'status' => 'success',
             'data' => [
                 [
-                    'key' => config('seed.item.key'),
-                    'name' => config('seed.item.name'),
-                    'unit' => config('seed.item.unit'),
+                    'key' => config('seeds.items.key'),
+                    'name' => config('seeds.items.name'),
+                    'unit' => config('seeds.items.unit'),
                 ],
             ],
         ])->assertStatus(200);

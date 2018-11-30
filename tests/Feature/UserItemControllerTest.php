@@ -25,16 +25,16 @@ class UserItemControllerTest extends TestCase
             'status' => 'success',
             'data' => [
                 [
-                    'key' => config('seed.item.key'),
-                    'name' => config('seed.item.name'),
-                    'unit' => config('seed.item.unit'),
+                    'key' => config('seeds.items.key'),
+                    'name' => config('seeds.items.name'),
+                    'unit' => config('seeds.items.unit'),
                     'category' => [
-                        'key' => config('seed.category.key'),
-                        'name' => config('seed.category.name'),
+                        'key' => config('seeds.categories.key'),
+                        'name' => config('seeds.categories.name'),
                     ],
                     'pivot' => [
-                        'frequency' => config('seed.user_item.frequency'),
-                        'completed' => config('seed.user_item.completed'),
+                        'frequency' => config('seeds.user_item.frequency'),
+                        'completed' => config('seeds.user_item.completed'),
                     ],
                 ],
             ],
@@ -97,19 +97,19 @@ class UserItemControllerTest extends TestCase
         $response = $this->withHeaders([
             'Accept' => 'application/json',
         ])->json('POST', '/api/users/me/items', [
-            'name' => 'new ' . config('seed.item.name'),
-            'unit' => config('seed.item.unit'),
-            'category_id' => config('seed.category.id'),
-            'frequency' => config('seed.user_item.frequency'),
+            'name' => 'new ' . config('seeds.items.name'),
+            'unit' => config('seeds.items.unit'),
+            'category_id' => config('seeds.categories.id'),
+            'frequency' => config('seeds.user_item.frequency'),
         ]);
 
         $response->assertJson([
             'status' => 'success',
             'data' => [
                 [
-                    'name' => 'new ' . config('seed.item.name'),
-                    'unit' => config('seed.item.unit'),
-                    'category_id' => config('seed.category.id'),
+                    'name' => 'new ' . config('seeds.items.name'),
+                    'unit' => config('seeds.items.unit'),
+                    'category_id' => config('seeds.categories.id'),
                 ],
             ],
         ])->assertStatus(201);
@@ -124,7 +124,7 @@ class UserItemControllerTest extends TestCase
     {
         $response = $this->withHeaders([
             'Accept' => 'application/json',
-        ])->json('GET', '/api/users/me/items/key', [
+        ])->json('GET', '/api/users/me/items/' . config('seeds.items.key'), [
             'with' => 'category',
         ]);
 
@@ -132,19 +132,65 @@ class UserItemControllerTest extends TestCase
             'status' => 'success',
             'data' => [
                 [
-                    'key' => config('seed.item.key'),
-                    'name' => config('seed.item.name'),
-                    'unit' => config('seed.item.unit'),
+                    'key' => config('seeds.items.key'),
+                    'name' => config('seeds.items.name'),
+                    'unit' => config('seeds.items.unit'),
                     'category' => [
-                        'key' => config('seed.category.key'),
-                        'name' => config('seed.category.name'),
+                        'key' => config('seeds.categories.key'),
+                        'name' => config('seeds.categories.name'),
                     ],
                     'pivot' => [
-                        'frequency' => config('seed.user_item.frequency'),
-                        'completed' => config('seed.user_item.completed'),
+                        'frequency' => config('seeds.user_item.frequency'),
+                        'completed' => config('seeds.user_item.completed'),
                     ],
                 ],
             ],
         ])->assertStatus(200);
+    }
+
+    /**
+     *
+     *
+     * @return void
+     */
+    public function testShowFail()
+    {
+        $response = $this->withHeaders([
+            'Accept' => 'application/json',
+        ])->json('GET', '/api/users/me/items/' . config('seeds.items.key'), [
+            'per_page' => 'string',
+        ]);
+
+        $response->assertJson([
+            'status' => 'fail',
+            'data' => [
+                [
+                    'per_page' => [
+                        'The per page must be an integer.',
+                    ],
+                ],
+            ],
+        ])->assertStatus(400);
+    }
+
+    /**
+     *
+     *
+     * @return void
+     */
+    public function testShowError()
+    {
+        $response = $this->withHeaders([
+            'Accept' => 'application/json',
+        ])->json('GET', '/api/users/me/items/' . config('seeds.items.key'), [
+            'with' => 'items,string',
+        ]);
+
+        $response->assertJson([
+            'status' => 'error',
+            'message' => [
+                //
+            ],
+        ])->assertStatus(500);
     }
 }

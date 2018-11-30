@@ -25,13 +25,13 @@ class UserCategoryControllerTest extends TestCase
             'status' => 'success',
             'data' => [
                 [
-                    'key' => config('seed.category.key'),
-                    'name' => config('seed.category.name'),
+                    'key' => config('seeds.categories.key'),
+                    'name' => config('seeds.categories.name'),
                     'items' => [
                         [
-                            'key' => config('seed.item.key'),
-                            'name' => config('seed.item.name'),
-                            'unit' => config('seed.item.unit'),
+                            'key' => config('seeds.items.key'),
+                            'name' => config('seeds.items.name'),
+                            'unit' => config('seeds.items.unit'),
                         ],
                     ],
                 ],
@@ -94,7 +94,7 @@ class UserCategoryControllerTest extends TestCase
     {
         $response = $this->withHeaders([
             'Accept' => 'application/json',
-        ])->json('GET', '/api/users/me/categories/key', [
+        ])->json('GET', '/api/users/me/categories/' . config('seeds.categories.key'), [
             'with' => 'items',
         ]);
 
@@ -102,17 +102,63 @@ class UserCategoryControllerTest extends TestCase
             'status' => 'success',
             'data' => [
                 [
-                    'key' => config('seed.category.key'),
-                    'name' => config('seed.category.name'),
+                    'key' => config('seeds.categories.key'),
+                    'name' => config('seeds.categories.name'),
                     'items' => [
                         [
-                            'key' => config('seed.item.key'),
-                            'name' => config('seed.item.name'),
-                            'unit' => config('seed.item.unit'),
+                            'key' => config('seeds.items.key'),
+                            'name' => config('seeds.items.name'),
+                            'unit' => config('seeds.items.unit'),
                         ],
                     ],
                 ],
             ],
         ])->assertStatus(200);
+    }
+
+    /**
+     *
+     *
+     * @return void
+     */
+    public function testShowFail()
+    {
+        $response = $this->withHeaders([
+            'Accept' => 'application/json',
+        ])->json('GET', '/api/users/me/categories/' . config('seeds.categories.key'), [
+            'per_page' => 'string',
+        ]);
+
+        $response->assertJson([
+            'status' => 'fail',
+            'data' => [
+                [
+                    'per_page' => [
+                        'The per page must be an integer.',
+                    ],
+                ],
+            ],
+        ])->assertStatus(400);
+    }
+
+    /**
+     *
+     *
+     * @return void
+     */
+    public function testShowError()
+    {
+        $response = $this->withHeaders([
+            'Accept' => 'application/json',
+        ])->json('GET', '/api/users/me/categories/' . config('seeds.categories.key'), [
+            'with' => 'items,string',
+        ]);
+
+        $response->assertJson([
+            'status' => 'error',
+            'message' => [
+                //
+            ],
+        ])->assertStatus(500);
     }
 }
