@@ -13,16 +13,16 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         User::create([
-            'key' => config('seeds.user.key', 'key'),
-            'name' => config('seeds.user.name', 'Test User'),
-            'sex' => config('seeds.user.sex', 1),
-            'age' => config('seeds.user.age', 25),
-            'height' => config('seeds.user.height', 180),
-            'weight' => config('seeds.user.weight', 65.0),
-            'email' => config('seeds.user.email', 'homestead@test.com'),
-            'password' => config('seeds.user.password', bcrypt('secret')),
+            'key' => config('seed.user.key'),
+            'name' => config('seed.user.name'),
+            'sex' => config('seed.user.sex'),
+            'age' => config('seed.user.age'),
+            'height' => config('seed.user.height'),
+            'weight' => config('seed.user.weight'),
+            'email' => config('seed.user.email'),
+            'password' => config('seed.user.password'),
         ]);
 
-        factory(User::class, config('seeds.number.user', 24))->create();
+        factory(User::class, config('factory.user.number'))->create();
     }
 }

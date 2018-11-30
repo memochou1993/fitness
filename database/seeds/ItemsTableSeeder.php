@@ -13,12 +13,12 @@ class ItemsTableSeeder extends Seeder
     public function run()
     {
         Item::create([
-            'key' => 'key',
-            'name' => 'Test Item',
-            'unit' => 1,
-            'category_id' => 1,
+            'key' => config('seed.item.key'),
+            'name' => config('seed.item.name'),
+            'unit' => config('seed.item.unit'),
+            'category_id' => config('seed.category.id'),
         ]);
 
-        factory(Item::class, config('default.database.seeds.number', 24))->create();
+        factory(Item::class, config('factory.item.number'))->create();
     }
 }

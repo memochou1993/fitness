@@ -13,11 +13,11 @@ class UserItemTableSeeder extends Seeder
     public function run()
     {
         UserItem::create([
-            'frequency' => 0.5,
-            'user_id' => 1,
-            'item_id' => 1,
+            'frequency' => config('seed.user_item.frequency'),
+            'user_id' => config('seed.user.id'),
+            'item_id' => config('seed.item.id'),
         ]);
 
-        factory(UserItem::class, 24)->create();
+        factory(UserItem::class, config('factory.user_item.number'))->create();
     }
 }

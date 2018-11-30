@@ -11,10 +11,6 @@ return [
     |
     */
 
-    'number' => [
-        'user' => 24,
-    ],
-    
     'user' => [
         'id' => 1,
         'key' => 'key',
@@ -28,19 +24,27 @@ return [
     ],
 
     'category' => [
-        //
+        'id' => 1,
+        'key' => 'key',
+        'name' => 'Test Category',
     ],
 
     'item' => [
-        //
+        'id' => 1,
+        'key' => 'key',
+        'name' => 'Test Item',
+        'unit' => '次',
     ],
 
     'condition' => [
-        //
+        'id' => 1,
+        'key' => 'key',
+        'date' => '2018-11-20',
+        'weight' => 60.0,
     ],
 
     'user_item' => [
-        //
+        'frequency' => 0.5
     ],
 
 ];
