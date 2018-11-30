@@ -17,7 +17,7 @@ class CreateConditionsTable extends Migration
             $table->increments('id');
             $table->string('key', 5)->unique();
             $table->date('date');
-            $table->decimal('weight', 4, 1)->nullable();
+            $table->float('weight')->nullable();
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

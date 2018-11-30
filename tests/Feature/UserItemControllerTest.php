@@ -31,6 +31,9 @@ class UserItemControllerTest extends TestCase
                         'key' => 'key',
                         'name' => 'Test Category',
                     ],
+                    'pivot' => [
+                        'frequency' => 0.5,
+                    ],
                 ],
             ],
         ])->assertStatus(200);
@@ -130,6 +133,9 @@ class UserItemControllerTest extends TestCase
                     'category' => [
                         'key' => 'key',
                         'name' => 'Test Category',
+                    ],
+                    'pivot' => [
+                        'frequency' => 0.5,
                     ],
                 ],
             ],

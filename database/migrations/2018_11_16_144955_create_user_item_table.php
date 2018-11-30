@@ -15,7 +15,7 @@ class CreateUserItemTable extends Migration
     {
         Schema::create('user_item', function (Blueprint $table) {
             $table->increments('id');
-            $table->decimal('frequency', 3, 1);
+            $table->float('frequency');
             $table->boolean('completed')->default(false);
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
