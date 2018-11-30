@@ -41,6 +41,52 @@ class UserItemControllerTest extends TestCase
      *
      * @return void
      */
+    public function testIndexFail()
+    {
+        $response = $this->withHeaders([
+            'Accept' => 'application/json',
+        ])->json('GET', '/api/users/me/items', [
+            'per_page' => 'string',
+        ]);
+
+        $response->assertJson([
+            'status' => 'fail',
+            'data' => [
+                [
+                    'per_page' => [
+                        'The per page must be an integer.',
+                    ],
+                ],
+            ],
+        ])->assertStatus(400);
+    }
+
+    /**
+     *
+     *
+     * @return void
+     */
+    public function testIndexError()
+    {
+        $response = $this->withHeaders([
+            'Accept' => 'application/json',
+        ])->json('GET', '/api/users/me/items', [
+            'with' => 'category,string',
+        ]);
+
+        $response->assertJson([
+            'status' => 'error',
+            'message' => [
+                //
+            ],
+        ])->assertStatus(500);
+    }
+
+    /**
+     *
+     *
+     * @return void
+     */
     public function testStore()
     {
         $response = $this->withHeaders([

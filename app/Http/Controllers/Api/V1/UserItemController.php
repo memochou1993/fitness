@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Api\V1;
 
 use Exception;
 use App\Helpers\Response;
-use App\Http\Resources\UserItemCollection;
-use App\Contracts\Api\V1\UserItemInterface;
 use App\Http\Controllers\Api\ApiController;
-use App\Http\Requests\Api\V1\UserItemRequest;
+use App\Http\Resources\UserItemCollection as Collection;
+use App\Http\Requests\Api\V1\UserItemRequest as Request;
+use App\Contracts\Api\V1\UserItemInterface as Repository;
 
 class UserItemController extends ApiController
 {
@@ -23,31 +23,38 @@ class UserItemController extends ApiController
 
     /**
      *
+     */
+    protected $errors;
+
+    /**
+     *
      *
      *
      */
-    public function __construct(UserItemInterface $repository, UserItemRequest $request)
+    public function __construct(Repository $repository, Request $request)
     {
         parent::__construct();
 
         $this->repository = $repository;
 
         $this->request = $request;
+
+        $this->errors = $this->request->validator ? $this->request->validator->errors() : null;
     }
 
     /**
      * Display a listing of the resource.
      *
-     * @return \App\Http\Resources\UserItemCollection
+     * @return \App\Http\Resources\Collection
      */
     public function index()
     {
-        if ($this->request->validator) {
-            return Response::fail($this->request->validator->errors());
+        if ($this->errors) {
+            return Response::fail($this->errors);
         }
 
         try {
-            return new UserItemCollection($this->repository->getAllItems());
+            return new Collection($this->repository->getAllItems());
         } catch (Exception $e) {
             return Response::error($e->getMessage());
         }
@@ -60,8 +67,8 @@ class UserItemController extends ApiController
      */
     public function store()
     {
-        if ($this->request->validator) {
-            return Response::fail($this->request->validator->errors());
+        if ($this->errors) {
+            return Response::fail($this->errors);
         }
 
         return Response::success($this->repository->postItem(), 201);
@@ -71,16 +78,20 @@ class UserItemController extends ApiController
      * Display the specified resource.
      *
      * @param  string  $item_key
-     * @return \App\Http\Resources\UserItemCollection
+     * @return \App\Http\Resources\Collection
      */
     public function show($item_key)
     {
-        if ($this->request->validator) {
-            return Response::fail($this->request->validator->errors());
+        if ($this->errors) {
+            return response(
+                [
+                    'errors' => $this->errors
+                ]
+            );
         }
 
         try {
-            return new UserItemCollection($this->repository->getItem($item_key));
+            return new Collection($this->repository->getItem($item_key));
         } catch (Exception $e) {
             return Response::error($e->getMessage());
         }

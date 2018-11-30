@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Api\V1;
 
 use Exception;
 use App\Helpers\Response;
-use App\Http\Resources\UserCategoryCollection;
-use App\Contracts\Api\V1\UserCategoryInterface;
 use App\Http\Controllers\Api\ApiController;
+use App\Http\Resources\UserCategoryCollection as Collection;
+use App\Http\Requests\Api\V1\UserCategoryRequest as Request;
+use App\Contracts\Api\V1\UserCategoryInterface as Repository;
 
 class UserCategoryController extends ApiController
 {
@@ -17,25 +18,38 @@ class UserCategoryController extends ApiController
 
     /**
      *
+     */
+    protected $errors;
+
+    /**
+     *
      *
      *
      */
-    public function __construct(UserCategoryInterface $repository)
+    public function __construct(Repository $repository, Request $request)
     {
         parent::__construct();
 
         $this->repository = $repository;
+
+        $this->request = $request;
+
+        $this->errors = $this->request->validator ? $this->request->validator->errors() : null;
     }
 
     /**
      * Display a listing of the resource.
      *
-     * @return \App\Http\Resources\UserCategoryCollection
+     * @return \App\Http\Resources\Collection
      */
     public function index()
     {
+        if ($this->errors) {
+            return Response::fail($this->errors);
+        }
+
         try {
-            return new UserCategoryCollection($this->repository->getAllCategories());
+            return new Collection($this->repository->getAllCategories());
         } catch (Exception $e) {
             return Response::error($e->getMessage());
         }
@@ -55,12 +69,16 @@ class UserCategoryController extends ApiController
      * Display the specified resource.
      *
      * @param  string  $category_key
-     * @return \App\Http\Resources\UserCategoryCollection
+     * @return \App\Http\Resources\Collection
      */
     public function show($category_key)
     {
+        if ($this->errors) {
+            return Response::fail($this->errors);
+        }
+
         try {
-            return new UserCategoryCollection($this->repository->getCategory($category_key));
+            return new Collection($this->repository->getCategory($category_key));
         } catch (Exception $e) {
             return Response::error($e->getMessage());
         }

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Http\Resources\ItemCollection;
-use App\Contracts\Api\V1\ItemInterface;
 use App\Http\Controllers\Api\ApiController;
+use App\Http\Resources\ItemCollection as Collection;
+use App\Contracts\Api\V1\ItemInterface as Repository;
 
 class ItemController extends ApiController
 {
@@ -18,7 +18,7 @@ class ItemController extends ApiController
      *
      *
      */
-    public function __construct(ItemInterface $repository)
+    public function __construct(Repository $repository)
     {
         parent::__construct();
 
@@ -29,10 +29,10 @@ class ItemController extends ApiController
      * Display the specified resource.
      *
      * @param  string  $item_key
-     * @return \App\Http\Resources\ItemCollection
+     * @return \App\Http\Resources\Collection
      */
     public function show($item_key)
     {
-        return new ItemCollection($this->repository->getItem($item_key));
+        return new Collection($this->repository->getItem($item_key));
     }
 }
