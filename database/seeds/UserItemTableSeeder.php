@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\UserItem;
 
 class UserItemTableSeeder extends Seeder
 {
@@ -11,6 +12,12 @@ class UserItemTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\UserItem::class, 20)->create();
+        UserItem::create([
+            'frequency' => 1.5,
+            'user_id' => 1,
+            'item_id' => 1,
+        ]);
+
+        factory(UserItem::class, config('default.database.seeds.number', 24))->create();
     }
 }

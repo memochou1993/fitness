@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Request;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class UserItem extends Model
@@ -21,4 +23,24 @@ class UserItem extends Model
     protected $fillable = [
         'date', 'frequency', 'completed',
     ];
+
+    /**
+     *
+     *
+     *
+     */
+    public function getCreatedAtAttribute($value)
+    {
+        return Request::input('diffForHumans') == 'true' ? Carbon::parse($value)->diffForHumans() : $value;
+    }
+
+    /**
+     *
+     *
+     *
+     */
+    public function getUpdatedAtAttribute($value)
+    {
+        return Request::input('diffForHumans') == 'true' ? Carbon::parse($value)->diffForHumans() : $value;
+    }
 }

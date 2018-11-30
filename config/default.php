@@ -15,4 +15,10 @@ return [
         'version' => 'v1',
     ],
 
+    'database' => [
+        'seeds' => [
+            'number' => 24,
+        ],
+    ],
+
 ];

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Request;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,7 +14,7 @@ class Item extends Model
      * @var array
      */
     protected $fillable = [
-        'key', 'name', 'unit', 'category_id',
+        'name', 'unit', 'category_id',
     ];
 
     /**
@@ -23,7 +24,7 @@ class Item extends Model
      */
     public function getCreatedAtAttribute($value)
     {
-        return $value ? Carbon::parse($value)->diffForHumans() : null;
+        return Request::input('diffForHumans') == 'true' ? Carbon::parse($value)->diffForHumans() : $value;
     }
 
     /**
@@ -33,7 +34,7 @@ class Item extends Model
      */
     public function getUpdatedAtAttribute($value)
     {
-        return $value ? Carbon::parse($value)->diffForHumans() : null;
+        return Request::input('diffForHumans') == 'true' ? Carbon::parse($value)->diffForHumans() : $value;
     }
 
     /**

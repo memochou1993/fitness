@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Category;
 
 class CategoriesTableSeeder extends Seeder
 {
@@ -11,12 +12,12 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        App\Category::create([
+        Category::create([
             'key' => 'key',
             'name' => 'Test Category',
             'user_id' => 1,
         ]);
 
-        factory(App\Category::class, 4)->create();
+        factory(Category::class, config('default.database.seeds.number', 24))->create();
     }
 }

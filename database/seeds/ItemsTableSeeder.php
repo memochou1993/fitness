@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Item;
 
 class ItemsTableSeeder extends Seeder
 {
@@ -11,13 +12,13 @@ class ItemsTableSeeder extends Seeder
      */
     public function run()
     {
-        App\Item::create([
+        Item::create([
             'key' => 'key',
             'name' => 'Test Item',
             'unit' => 1,
             'category_id' => 1,
         ]);
 
-        factory(App\Item::class, 4)->create();
+        factory(Item::class, config('default.database.seeds.number', 24))->create();
     }
 }

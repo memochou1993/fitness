@@ -15,6 +15,7 @@ class CreateConditionsTable extends Migration
     {
         Schema::create('conditions', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('key', 5)->unique();
             $table->date('date');
             $table->decimal('weight', 4, 1)->nullable();
             $table->integer('user_id')->unsigned();

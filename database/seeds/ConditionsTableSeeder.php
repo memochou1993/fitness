@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Condition;
 
 class ConditionsTableSeeder extends Seeder
 {
@@ -11,12 +12,13 @@ class ConditionsTableSeeder extends Seeder
      */
     public function run()
     {
-        App\Condition::create([
+        Condition::create([
+            'key' => 'key',
             'date' => '2018-11-20',
             'weight' => 70.0,
             'user_id' => 1,
         ]);
 
-        factory(App\Condition::class, 4)->create();
+        factory(Condition::class, config('default.database.seeds.number', 24))->create();
     }
 }

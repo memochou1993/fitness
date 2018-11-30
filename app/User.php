@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Request;
+use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -28,6 +30,26 @@ class User extends \TCG\Voyager\Models\User
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     *
+     *
+     *
+     */
+    public function getCreatedAtAttribute($value)
+    {
+        return Request::input('diffForHumans') == 'true' ? Carbon::parse($value)->diffForHumans() : $value;
+    }
+
+    /**
+     *
+     *
+     *
+     */
+    public function getUpdatedAtAttribute($value)
+    {
+        return Request::input('diffForHumans') == 'true' ? Carbon::parse($value)->diffForHumans() : $value;
+    }
 
     /**
      * Get the conditions associated with the user.

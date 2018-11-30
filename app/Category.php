@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Request;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
@@ -14,6 +16,26 @@ class Category extends Model
     protected $fillable = [
         'name',
     ];
+
+    /**
+     *
+     *
+     *
+     */
+    public function getCreatedAtAttribute($value)
+    {
+        return Request::input('diffForHumans') == 'true' ? Carbon::parse($value)->diffForHumans() : $value;
+    }
+
+    /**
+     *
+     *
+     *
+     */
+    public function getUpdatedAtAttribute($value)
+    {
+        return Request::input('diffForHumans') == 'true' ? Carbon::parse($value)->diffForHumans() : $value;
+    }
 
     /**
      * Get the user associated with the condition.
