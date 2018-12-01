@@ -6,7 +6,7 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class UserItemControllerTest extends TestCase
+class RecordControllerTest extends TestCase
 {
     /**
      *
@@ -17,7 +17,7 @@ class UserItemControllerTest extends TestCase
     {
         $response = $this->withHeaders([
             'Accept' => 'application/json',
-        ])->json('GET', '/api/users/me/items', [
+        ])->json('GET', '/api/users/me/records', [
             'with' => 'category',
         ]);
 
@@ -50,7 +50,7 @@ class UserItemControllerTest extends TestCase
     {
         $response = $this->withHeaders([
             'Accept' => 'application/json',
-        ])->json('GET', '/api/users/me/items', [
+        ])->json('GET', '/api/users/me/records', [
             'per_page' => 'string',
         ]);
 
@@ -75,7 +75,7 @@ class UserItemControllerTest extends TestCase
     {
         $response = $this->withHeaders([
             'Accept' => 'application/json',
-        ])->json('GET', '/api/users/me/items', [
+        ])->json('GET', '/api/users/me/records', [
             'with' => 'category,string',
         ]);
 
@@ -96,7 +96,7 @@ class UserItemControllerTest extends TestCase
     {
         $response = $this->withHeaders([
             'Accept' => 'application/json',
-        ])->json('POST', '/api/users/me/items', [
+        ])->json('POST', '/api/users/me/records', [
             'name' => 'new ' . config('seeds.items.name'),
             'unit' => config('seeds.items.unit'),
             'category_id' => config('seeds.categories.id'),
@@ -124,7 +124,7 @@ class UserItemControllerTest extends TestCase
     {
         $response = $this->withHeaders([
             'Accept' => 'application/json',
-        ])->json('GET', '/api/users/me/items/' . config('seeds.items.key'), [
+        ])->json('GET', '/api/users/me/records/' . config('seeds.items.key'), [
             'with' => 'category',
         ]);
 
@@ -157,7 +157,7 @@ class UserItemControllerTest extends TestCase
     {
         $response = $this->withHeaders([
             'Accept' => 'application/json',
-        ])->json('GET', '/api/users/me/items/' . config('seeds.items.key'), [
+        ])->json('GET', '/api/users/me/records/' . config('seeds.items.key'), [
             'per_page' => 'string',
         ]);
 
@@ -182,7 +182,7 @@ class UserItemControllerTest extends TestCase
     {
         $response = $this->withHeaders([
             'Accept' => 'application/json',
-        ])->json('GET', '/api/users/me/items/' . config('seeds.items.key'), [
+        ])->json('GET', '/api/users/me/records/' . config('seeds.items.key'), [
             'with' => 'items,string',
         ]);
 

@@ -5,11 +5,11 @@ namespace App\Http\Controllers\Api\V1;
 use Exception;
 use App\Helpers\Response;
 use App\Http\Controllers\Api\ApiController;
-use App\Http\Resources\UserItemCollection as Collection;
-use App\Http\Requests\Api\V1\UserItemRequest as Request;
-use App\Contracts\Api\V1\UserItemInterface as Repository;
+use App\Http\Resources\RecordCollection as Collection;
+use App\Http\Requests\Api\V1\RecordRequest as Request;
+use App\Contracts\Api\V1\RecordInterface as Repository;
 
-class UserItemController extends ApiController
+class RecordController extends ApiController
 {
     /**
      *
@@ -54,7 +54,7 @@ class UserItemController extends ApiController
         }
 
         try {
-            return new Collection($this->repository->getAllUserItems());
+            return new Collection($this->repository->getAllRecords());
         } catch (Exception $e) {
             return Response::error($e->getMessage());
         }
@@ -71,7 +71,7 @@ class UserItemController extends ApiController
             return Response::fail($this->errors);
         }
 
-        return Response::success($this->repository->postUserItem(), 201);
+        return Response::success($this->repository->postRecord(), 201);
     }
 
     /**
@@ -87,7 +87,7 @@ class UserItemController extends ApiController
         }
 
         try {
-            return new Collection($this->repository->getUserItem($item_key));
+            return new Collection($this->repository->getRecord($item_key));
         } catch (Exception $e) {
             return Response::error($e->getMessage());
         }
@@ -105,7 +105,7 @@ class UserItemController extends ApiController
             return Response::fail($this->errors);
         }
 
-        return ($this->repository->putUserItem($item_key)) ? Response::success(null, 204) : Response::fail(null, 403);
+        return ($this->repository->putRecord($item_key)) ? Response::success(null, 204) : Response::fail(null, 403);
     }
 
     /**

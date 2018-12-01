@@ -6,9 +6,9 @@ use App\Item;
 use App\UserItem;
 use Illuminate\Http\Request;
 use App\Repositories\Api\ApiRepository;
-use App\Contracts\Api\V1\UserItemInterface;
+use App\Contracts\Api\V1\RecordInterface;
 
-class UserItemRepository extends ApiRepository implements UserItemInterface
+class RecordRepository extends ApiRepository implements RecordInterface
 {
     /**
      *
@@ -46,7 +46,7 @@ class UserItemRepository extends ApiRepository implements UserItemInterface
      *
      *
      */
-    public function getAllUserItems()
+    public function getAllRecords()
     {
         $items = $this->user->items();
 
@@ -62,7 +62,7 @@ class UserItemRepository extends ApiRepository implements UserItemInterface
      *
      *
      */
-    public function getUserItem($item_key)
+    public function getRecord($item_key)
     {
         $items = $this->user->items();
 
@@ -78,7 +78,7 @@ class UserItemRepository extends ApiRepository implements UserItemInterface
      *
      *
      */
-    public function postUserItem()
+    public function postRecord()
     {
         $item = $this->item->create([
             'key' => substr(md5(now()), 0, 5),
@@ -101,7 +101,7 @@ class UserItemRepository extends ApiRepository implements UserItemInterface
      *
      *
      */
-    public function putUserItem($item_key)
+    public function putRecord($item_key)
     {
         $user_item = $this->user_item->find($this->request->user_item_id);
 

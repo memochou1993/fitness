@@ -4,12 +4,12 @@ namespace App\Providers;
 
 use App\Contracts\Api\V1\UserInterface;
 use App\Contracts\Api\V1\ItemInterface;
+use App\Contracts\Api\V1\RecordInterface;
 use App\Contracts\Api\V1\CategoryInterface;
-use App\Contracts\Api\V1\UserItemInterface;
 use App\Repositories\Api\V1\UserRepository;
 use App\Repositories\Api\V1\ItemRepository;
+use App\Repositories\Api\V1\RecordRepository;
 use App\Repositories\Api\V1\CategoryRepository;
-use App\Repositories\Api\V1\UserItemRepository;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -40,8 +40,8 @@ class RepositoryServiceProvider extends ServiceProvider
     {
         $this->app->bind(UserInterface::class, UserRepository::class);
         $this->app->bind(ItemInterface::class, ItemRepository::class);
+        $this->app->bind(RecordInterface::class, RecordRepository::class);
         $this->app->bind(CategoryInterface::class, CategoryRepository::class);
-        $this->app->bind(UserItemInterface::class, UserItemRepository::class);
     }
 
     /**
@@ -54,8 +54,8 @@ class RepositoryServiceProvider extends ServiceProvider
         return [
             UserInterface::class,
             ItemInterface::class,
+            RecordInterface::class,
             CategoryInterface::class,
-            UserItemInterface::class,
         ];
     }
 }

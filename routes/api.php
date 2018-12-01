@@ -15,7 +15,7 @@ use Illuminate\Http\Request;
 
 Route::prefix('/users/me')->group(function () {
     Route::get('/', 'UserController@show');
-    Route::resource('/items', 'UserItemController')->except(['create', 'edit']);
+    Route::resource('/records', 'RecordController')->except(['create', 'edit']);
     Route::resource('/categories', 'UserCategoryController')->except(['create', 'edit']);
 });
 
