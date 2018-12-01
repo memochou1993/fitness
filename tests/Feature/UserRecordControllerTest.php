@@ -4,9 +4,8 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class RecordControllerTest extends TestCase
+class UserRecordControllerTest extends TestCase
 {
     /**
      *
@@ -22,20 +21,14 @@ class RecordControllerTest extends TestCase
         ]);
 
         $response->assertJson([
-            'status' => 'success',
             'data' => [
                 [
                     'key' => config('seeds.items.key'),
+                    'category' => config('seeds.categories.name'),
                     'name' => config('seeds.items.name'),
+                    'frequency' => config('seeds.records.frequency'),
                     'unit' => config('seeds.items.unit'),
-                    'category' => [
-                        'key' => config('seeds.categories.key'),
-                        'name' => config('seeds.categories.name'),
-                    ],
-                    'pivot' => [
-                        'frequency' => config('seeds.records.frequency'),
-                        'completed' => config('seeds.records.completed'),
-                    ],
+                    'completed' => config('seeds.records.completed'),
                 ],
             ],
         ])->assertStatus(200);
@@ -55,7 +48,6 @@ class RecordControllerTest extends TestCase
         ]);
 
         $response->assertJson([
-            'status' => 'fail',
             'data' => [
                 [
                     'per_page' => [
@@ -64,27 +56,6 @@ class RecordControllerTest extends TestCase
                 ],
             ],
         ])->assertStatus(400);
-    }
-
-    /**
-     *
-     *
-     * @return void
-     */
-    public function testIndexError()
-    {
-        $response = $this->withHeaders([
-            'Accept' => 'application/json',
-        ])->json('GET', '/api/users/me/records', [
-            'with' => 'category,string',
-        ]);
-
-        $response->assertJson([
-            'status' => 'error',
-            'message' => [
-                //
-            ],
-        ])->assertStatus(500);
     }
 
     /**
@@ -104,7 +75,6 @@ class RecordControllerTest extends TestCase
         ]);
 
         $response->assertJson([
-            'status' => 'success',
             'data' => [
                 [
                     'name' => 'new ' . config('seeds.items.name'),
@@ -129,20 +99,14 @@ class RecordControllerTest extends TestCase
         ]);
 
         $response->assertJson([
-            'status' => 'success',
             'data' => [
                 [
                     'key' => config('seeds.items.key'),
+                    'category' => config('seeds.categories.name'),
                     'name' => config('seeds.items.name'),
+                    'frequency' => config('seeds.records.frequency'),
                     'unit' => config('seeds.items.unit'),
-                    'category' => [
-                        'key' => config('seeds.categories.key'),
-                        'name' => config('seeds.categories.name'),
-                    ],
-                    'pivot' => [
-                        'frequency' => config('seeds.records.frequency'),
-                        'completed' => config('seeds.records.completed'),
-                    ],
+                    'completed' => config('seeds.records.completed'),
                 ],
             ],
         ])->assertStatus(200);
@@ -162,7 +126,6 @@ class RecordControllerTest extends TestCase
         ]);
 
         $response->assertJson([
-            'status' => 'fail',
             'data' => [
                 [
                     'per_page' => [
@@ -171,26 +134,5 @@ class RecordControllerTest extends TestCase
                 ],
             ],
         ])->assertStatus(400);
-    }
-
-    /**
-     *
-     *
-     * @return void
-     */
-    public function testShowError()
-    {
-        $response = $this->withHeaders([
-            'Accept' => 'application/json',
-        ])->json('GET', '/api/users/me/records/' . config('seeds.items.key'), [
-            'with' => 'items,string',
-        ]);
-
-        $response->assertJson([
-            'status' => 'error',
-            'message' => [
-                //
-            ],
-        ])->assertStatus(500);
     }
 }

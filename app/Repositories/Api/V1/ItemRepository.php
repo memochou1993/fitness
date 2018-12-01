@@ -34,4 +34,14 @@ class ItemRepository extends ApiRepository implements ItemInterface
     {
         return $this->item->where('key', $item_key)->paginate($this->per_page);
     }
+
+    /**
+     *
+     *
+     *
+     */
+    public function getAllUserItems()
+    {
+        return $this->user->items()->paginate($this->per_page);
+    }
 }

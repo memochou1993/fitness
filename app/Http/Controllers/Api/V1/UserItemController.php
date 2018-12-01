@@ -5,11 +5,11 @@ namespace App\Http\Controllers\Api\V1;
 use Exception;
 use App\Helpers\Response;
 use App\Http\Controllers\Api\ApiController;
-use App\Http\Resources\RecordCollection as Collection;
-use App\Http\Requests\Api\V1\RecordRequest as Request;
-use App\Contracts\Api\V1\RecordInterface as Repository;
+use App\Http\Resources\ItemResource as Resource;
+use App\Http\Requests\Api\V1\ItemRequest as Request;
+use App\Contracts\Api\V1\ItemInterface as Repository;
 
-class RecordController extends ApiController
+class UserItemController extends ApiController
 {
     /**
      *
@@ -45,7 +45,7 @@ class RecordController extends ApiController
     /**
      * Display a listing of the resource.
      *
-     * @return \App\Http\Resources\Collection
+     * @return \App\Http\Resources\Resource
      */
     public function index()
     {
@@ -54,7 +54,7 @@ class RecordController extends ApiController
         }
 
         try {
-            return new Collection($this->repository->getAllRecords());
+            return Resource::collection($this->repository->getAllUserItems());
         } catch (Exception $e) {
             return Response::error($e->getMessage());
         }
@@ -67,30 +67,18 @@ class RecordController extends ApiController
      */
     public function store()
     {
-        if ($this->errors) {
-            return Response::fail($this->errors);
-        }
-
-        return Response::success($this->repository->postRecord(), 201);
+        //
     }
 
     /**
      * Display the specified resource.
      *
      * @param  string  $item_key
-     * @return \App\Http\Resources\Collection
+     * @return \App\Http\Resources\Resource
      */
     public function show($item_key)
     {
-        if ($this->errors) {
-            return Response::fail($this->errors);
-        }
-
-        try {
-            return new Collection($this->repository->getRecord($item_key));
-        } catch (Exception $e) {
-            return Response::error($e->getMessage());
-        }
+        //
     }
 
     /**
@@ -101,11 +89,7 @@ class RecordController extends ApiController
      */
     public function update($item_key)
     {
-        if ($this->errors) {
-            return Response::fail($this->errors);
-        }
-
-        return ($this->repository->putRecord($item_key)) ? Response::success(null, 204) : Response::fail(null, 403);
+        //
     }
 
     /**

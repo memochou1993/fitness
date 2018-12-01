@@ -5,16 +5,21 @@ namespace App\Http\Controllers\Api\V1;
 use Exception;
 use App\Helpers\Response;
 use App\Http\Controllers\Api\ApiController;
-use App\Http\Resources\CategoryResource as Resource;
-use App\Http\Requests\Api\V1\CategoryRequest as Request;
-use App\Contracts\Api\V1\CategoryInterface as Repository;
+use App\Http\Resources\RecordResource as Resource;
+use App\Http\Requests\Api\V1\RecordRequest as Request;
+use App\Contracts\Api\V1\RecordInterface as Repository;
 
-class UserCategoryController extends ApiController
+class UserRecordController extends ApiController
 {
     /**
      *
      */
     protected $repository;
+
+    /**
+     *
+     */
+    protected $request;
 
     /**
      *
@@ -49,7 +54,7 @@ class UserCategoryController extends ApiController
         }
 
         try {
-            return Resource::collection($this->repository->getAllUserCategories());
+            return Resource::collection($this->repository->getAllUserRecords());
         } catch (Exception $e) {
             return Response::error($e->getMessage());
         }
@@ -62,23 +67,27 @@ class UserCategoryController extends ApiController
      */
     public function store()
     {
-        //
+        if ($this->errors) {
+            return Response::fail($this->errors);
+        }
+
+        return Response::success($this->repository->postUserRecord(), 201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  string  $category_key
+     * @param  string  $item_key
      * @return \App\Http\Resources\Resource
      */
-    public function show($category_key)
+    public function show($item_key)
     {
         if ($this->errors) {
             return Response::fail($this->errors);
         }
 
         try {
-            return Resource::collection($this->repository->getUserCategory($category_key));
+            return Resource::collection($this->repository->getUserRecord($item_key));
         } catch (Exception $e) {
             return Response::error($e->getMessage());
         }
@@ -87,21 +96,25 @@ class UserCategoryController extends ApiController
     /**
      * Update the specified resource in storage.
      *
-     * @param  string  $category_id
+     * @param  string  $item_key
      * @return \Illuminate\Http\Response
      */
-    public function update($category_id)
+    public function update($item_key)
     {
-        //
+        if ($this->errors) {
+            return Response::fail($this->errors);
+        }
+
+        return ($this->repository->putUserRecord($item_key)) ? Response::success(null, 204) : Response::fail(null, 403);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  string  $category_id
+     * @param  string  $item_id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($category_id)
+    public function destroy($item_id)
     {
         //
     }

@@ -46,13 +46,11 @@ class RecordRepository extends ApiRepository implements RecordInterface
      *
      *
      */
-    public function getAllRecords()
+    public function getAllUserRecords()
     {
-        $items = $this->user->items();
-
-        if ($this->with) {
-            $items->with($this->with);
-        }
+        $items = $this->user->items()->withPivot([
+            'id', 'frequency', 'completed',
+        ]);
 
         return $items->paginate($this->per_page);
     }
@@ -62,13 +60,11 @@ class RecordRepository extends ApiRepository implements RecordInterface
      *
      *
      */
-    public function getRecord($item_key)
+    public function getUserRecord($item_key)
     {
-        $items = $this->user->items();
-
-        if ($this->with) {
-            $items->with($this->with);
-        }
+        $items = $this->user->items()->withPivot([
+            'id', 'frequency', 'completed',
+        ]);
 
         return $items->where('key', $item_key)->paginate($this->per_page);
     }
@@ -78,7 +74,7 @@ class RecordRepository extends ApiRepository implements RecordInterface
      *
      *
      */
-    public function postRecord()
+    public function postUserRecord()
     {
         $item = $this->item->create([
             'key' => substr(md5(now()), 0, 5),
@@ -101,7 +97,7 @@ class RecordRepository extends ApiRepository implements RecordInterface
      *
      *
      */
-    public function putRecord($item_key)
+    public function putUserRecord($item_key)
     {
         $record = $this->record->find($this->request->record_id);
 

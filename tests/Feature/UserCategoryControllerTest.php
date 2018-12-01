@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class UserCategoryControllerTest extends TestCase
 {
@@ -22,7 +21,6 @@ class UserCategoryControllerTest extends TestCase
         ]);
 
         $response->assertJson([
-            'status' => 'success',
             'data' => [
                 [
                     'key' => config('seeds.categories.key'),
@@ -53,7 +51,6 @@ class UserCategoryControllerTest extends TestCase
         ]);
 
         $response->assertJson([
-            'status' => 'fail',
             'data' => [
                 [
                     'per_page' => [
@@ -78,7 +75,6 @@ class UserCategoryControllerTest extends TestCase
         ]);
 
         $response->assertJson([
-            'status' => 'error',
             'message' => [
                 //
             ],
@@ -99,7 +95,6 @@ class UserCategoryControllerTest extends TestCase
         ]);
 
         $response->assertJson([
-            'status' => 'success',
             'data' => [
                 [
                     'key' => config('seeds.categories.key'),
@@ -130,7 +125,6 @@ class UserCategoryControllerTest extends TestCase
         ]);
 
         $response->assertJson([
-            'status' => 'fail',
             'data' => [
                 [
                     'per_page' => [
@@ -155,7 +149,6 @@ class UserCategoryControllerTest extends TestCase
         ]);
 
         $response->assertJson([
-            'status' => 'error',
             'message' => [
                 //
             ],

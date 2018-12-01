@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
+use Illuminate\Foundation\Testing\WithFaker;
 
 class ItemControllerTest extends TestCase
 {
@@ -20,12 +21,10 @@ class ItemControllerTest extends TestCase
         ]);
 
         $response->assertJson([
-            'status' => 'success',
             'data' => [
                 [
                     'key' => config('seeds.items.key'),
                     'name' => config('seeds.items.name'),
-                    'unit' => config('seeds.items.unit'),
                 ],
             ],
         ])->assertStatus(200);

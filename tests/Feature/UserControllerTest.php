@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class UserControllerTest extends TestCase
 {
@@ -22,7 +21,6 @@ class UserControllerTest extends TestCase
         ]);
 
         $response->assertJson([
-            'status' => 'success',
             'data' => [
                 [
                     'key' => config('seeds.users.key'),

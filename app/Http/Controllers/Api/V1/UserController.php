@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Helpers\Response;
 use App\Http\Controllers\Api\ApiController;
-use App\Http\Resources\UserCollection as Collection;
 use App\Contracts\Api\V1\UserInterface as Repository;
 
 class UserController extends ApiController
