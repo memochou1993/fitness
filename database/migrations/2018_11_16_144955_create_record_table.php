@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserItemTable extends Migration
+class CreateRecordTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateUserItemTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_item', function (Blueprint $table) {
+        Schema::create('records', function (Blueprint $table) {
             $table->increments('id');
             $table->float('frequency');
             $table->boolean('completed')->default(false);
@@ -32,6 +32,6 @@ class CreateUserItemTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_item');
+        Schema::dropIfExists('records');
     }
 }

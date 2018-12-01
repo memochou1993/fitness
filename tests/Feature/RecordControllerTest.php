@@ -33,8 +33,8 @@ class RecordControllerTest extends TestCase
                         'name' => config('seeds.categories.name'),
                     ],
                     'pivot' => [
-                        'frequency' => config('seeds.user_item.frequency'),
-                        'completed' => config('seeds.user_item.completed'),
+                        'frequency' => config('seeds.records.frequency'),
+                        'completed' => config('seeds.records.completed'),
                     ],
                 ],
             ],
@@ -100,7 +100,7 @@ class RecordControllerTest extends TestCase
             'name' => 'new ' . config('seeds.items.name'),
             'unit' => config('seeds.items.unit'),
             'category_id' => config('seeds.categories.id'),
-            'frequency' => config('seeds.user_item.frequency'),
+            'frequency' => config('seeds.records.frequency'),
         ]);
 
         $response->assertJson([
@@ -140,8 +140,8 @@ class RecordControllerTest extends TestCase
                         'name' => config('seeds.categories.name'),
                     ],
                     'pivot' => [
-                        'frequency' => config('seeds.user_item.frequency'),
-                        'completed' => config('seeds.user_item.completed'),
+                        'frequency' => config('seeds.records.frequency'),
+                        'completed' => config('seeds.records.completed'),
                     ],
                 ],
             ],

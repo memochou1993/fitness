@@ -78,7 +78,7 @@ class User extends \TCG\Voyager\Models\User
      */
     public function items()
     {
-        return $this->belongsToMany(Item::class, 'user_item')->withPivot([
+        return $this->belongsToMany(Item::class, 'records')->withPivot([
             'id', 'frequency', 'completed',
         ])->withTimestamps();
     }

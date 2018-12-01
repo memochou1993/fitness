@@ -6,14 +6,14 @@ use Request;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
-class UserItem extends Model
+class Record extends Model
 {
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'user_item';
+    protected $table = 'records';
 
     /**
      * The attributes that are mass assignable.

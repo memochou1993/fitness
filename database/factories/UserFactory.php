@@ -1,6 +1,5 @@
 <?php
 
-use App\User;
 use Faker\Generator as Faker;
 
 /*
@@ -14,7 +13,7 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(User::class, function (Faker $faker) {
+$factory->define(App\User::class, function (Faker $faker) {
     return [
         'key' => str_random(5),
         'name' => $faker->name,

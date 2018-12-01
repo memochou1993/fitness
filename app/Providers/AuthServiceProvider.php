@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\UserItem as Record;
+use App\Record;
 use App\Policies\RecordPolicy;
 use Laravel\Passport\Passport;
 use Illuminate\Support\Facades\Gate;

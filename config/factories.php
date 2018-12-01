@@ -27,7 +27,7 @@ return [
         'number' => 24,
     ],
 
-    'user_item' => [
+    'record' => [
         'number' => 24,
     ],
 

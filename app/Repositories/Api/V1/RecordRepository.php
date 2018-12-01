@@ -3,7 +3,7 @@
 namespace App\Repositories\Api\V1;
 
 use App\Item;
-use App\UserItem as Record;
+use App\Record;
 use Illuminate\Http\Request;
 use App\Repositories\Api\ApiRepository;
 use App\Contracts\Api\V1\RecordInterface;

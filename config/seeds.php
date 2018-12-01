@@ -43,7 +43,7 @@ return [
         'weight' => 60.0,
     ],
 
-    'user_item' => [
+    'records' => [
         'frequency' => 0.5,
         'completed' => false,
     ],

@@ -5,7 +5,7 @@ namespace App\Policies;
 use App;
 use Auth;
 use App\User;
-use App\UserItem as Record;
+use App\Record;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class RecordPolicy

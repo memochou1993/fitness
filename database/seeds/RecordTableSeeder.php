@@ -1,9 +1,9 @@
 <?php
 
+use App\Record;
 use Illuminate\Database\Seeder;
-use App\UserItem as Record;
 
-class UserItemTableSeeder extends Seeder
+class RecordTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,11 +13,11 @@ class UserItemTableSeeder extends Seeder
     public function run()
     {
         Record::create([
-            'frequency' => config('seeds.user_item.frequency'),
+            'frequency' => config('seeds.records.frequency'),
             'user_id' => config('seeds.users.id'),
             'item_id' => config('seeds.items.id'),
         ]);
 
-        factory(Record::class, config('factories.user_item.number'))->create();
+        factory(Record::class, config('factories.record.number'))->create();
     }
 }
