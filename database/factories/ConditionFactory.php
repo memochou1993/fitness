@@ -1,5 +1,6 @@
 <?php
 
+use App\Condition;
 use Faker\Generator as Faker;
 
 /*
@@ -13,7 +14,7 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(App\Condition::class, function (Faker $faker) {
+$factory->define(Condition::class, function (Faker $faker) {
     return [
         'key' => str_random(5),
         'date' => $faker->date($format = 'Y-m-d', $max = 'now'),

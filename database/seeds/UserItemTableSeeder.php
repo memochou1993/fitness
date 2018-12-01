@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\UserItem;
+use App\UserItem as Record;
 
 class UserItemTableSeeder extends Seeder
 {
@@ -12,12 +12,12 @@ class UserItemTableSeeder extends Seeder
      */
     public function run()
     {
-        UserItem::create([
+        Record::create([
             'frequency' => config('seeds.user_item.frequency'),
             'user_id' => config('seeds.users.id'),
             'item_id' => config('seeds.items.id'),
         ]);
 
-        factory(UserItem::class, config('factories.user_item.number'))->create();
+        factory(Record::class, config('factories.user_item.number'))->create();
     }
 }

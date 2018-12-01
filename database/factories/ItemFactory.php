@@ -1,5 +1,6 @@
 <?php
 
+use App\Item;
 use Faker\Generator as Faker;
 
 /*
@@ -13,7 +14,7 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(App\Item::class, function (Faker $faker) {
+$factory->define(Item::class, function (Faker $faker) {
     return [
         'key' => str_random(5),
         'name' => $faker->bothify('Item ##??'),
