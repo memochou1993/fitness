@@ -30,7 +30,9 @@ class UserItemRequest extends ApiRequest
             case 'PUT':
             case 'PATCH':
                 return [
-                    //
+                    'user_item_id' => 'required|integer|max:255',
+                    'frequency' => 'required|max:255',
+                    'completed' => 'required|boolean',
                 ];
 
             default:

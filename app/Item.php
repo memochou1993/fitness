@@ -55,7 +55,7 @@ class Item extends Model
     public function users()
     {
         return $this->belongsToMany(User::class, 'user_item')->withPivot([
-            'frequency',  'completed',
+            'id', 'frequency',  'completed',
         ])->withTimestamps();
     }
 }

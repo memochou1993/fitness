@@ -7,7 +7,7 @@ use App\Helpers\Response;
 use App\Http\Controllers\Api\ApiController;
 use App\Http\Resources\UserCategoryCollection as Collection;
 use App\Http\Requests\Api\V1\UserCategoryRequest as Request;
-use App\Contracts\Api\V1\UserCategoryInterface as Repository;
+use App\Contracts\Api\V1\CategoryInterface as Repository;
 
 class UserCategoryController extends ApiController
 {
@@ -49,7 +49,7 @@ class UserCategoryController extends ApiController
         }
 
         try {
-            return new Collection($this->repository->getAllCategories());
+            return new Collection($this->repository->getAllUserCategories());
         } catch (Exception $e) {
             return Response::error($e->getMessage());
         }
@@ -78,7 +78,7 @@ class UserCategoryController extends ApiController
         }
 
         try {
-            return new Collection($this->repository->getCategory($category_key));
+            return new Collection($this->repository->getUserCategory($category_key));
         } catch (Exception $e) {
             return Response::error($e->getMessage());
         }

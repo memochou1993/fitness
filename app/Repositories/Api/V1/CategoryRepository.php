@@ -34,4 +34,36 @@ class CategoryRepository extends ApiRepository implements CategoryInterface
     {
         return $this->category->where('key', $category_key)->paginate($this->per_page);
     }
+
+    /**
+     *
+     *
+     *
+     */
+    public function getAllUserCategories()
+    {
+        $categories = $this->user->categories();
+
+        if ($this->with) {
+            $categories->with($this->with);
+        }
+
+        return $categories->paginate($this->per_page);
+    }
+
+    /**
+     *
+     *
+     *
+     */
+    public function getUserCategory($category_key)
+    {
+        $categories = $this->user->categories();
+
+        if ($this->with) {
+            $categories->with($this->with);
+        }
+
+        return $categories->where('key', $category_key)->paginate($this->per_page);
+    }
 }

@@ -21,7 +21,7 @@ class UserItem extends Model
      * @var array
      */
     protected $fillable = [
-        'date', 'frequency', 'completed',
+        'frequency', 'completed',
     ];
 
     /**

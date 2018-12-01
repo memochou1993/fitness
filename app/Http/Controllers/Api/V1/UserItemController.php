@@ -54,7 +54,7 @@ class UserItemController extends ApiController
         }
 
         try {
-            return new Collection($this->repository->getAllItems());
+            return new Collection($this->repository->getAllUserItems());
         } catch (Exception $e) {
             return Response::error($e->getMessage());
         }
@@ -71,7 +71,7 @@ class UserItemController extends ApiController
             return Response::fail($this->errors);
         }
 
-        return Response::success($this->repository->postItem(), 201);
+        return Response::success($this->repository->postUserItem(), 201);
     }
 
     /**
@@ -87,7 +87,7 @@ class UserItemController extends ApiController
         }
 
         try {
-            return new Collection($this->repository->getItem($item_key));
+            return new Collection($this->repository->getUserItem($item_key));
         } catch (Exception $e) {
             return Response::error($e->getMessage());
         }
@@ -96,12 +96,16 @@ class UserItemController extends ApiController
     /**
      * Update the specified resource in storage.
      *
-     * @param  string  $item_id
+     * @param  string  $item_key
      * @return \Illuminate\Http\Response
      */
-    public function update($item_id)
+    public function update($item_key)
     {
-        //
+        if ($this->errors) {
+            return Response::fail($this->errors);
+        }
+
+        return ($this->repository->putUserItem($item_key)) ? Response::success(null, 204) : Response::fail(null, 403);
     }
 
     /**
