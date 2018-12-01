@@ -5,10 +5,10 @@ namespace App\Policies;
 use App;
 use Auth;
 use App\User;
-use App\UserItem;
+use App\UserItem as Record;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class UserItemPolicy
+class RecordPolicy
 {
     use HandlesAuthorization;
 
@@ -30,11 +30,11 @@ class UserItemPolicy
     /**
      * Determine if the given item can be updated by the user.
      *
-     * @param  \App\UserItem  $user_item
+     * @param  \App\Record  $record
      * @return bool
      */
-    public function update(User $user, UserItem $user_item)
+    public function update(User $user, Record $record)
     {
-        return $this->user->id === $user_item->user_id;
+        return $this->user->id === $record->user_id;
     }
 }

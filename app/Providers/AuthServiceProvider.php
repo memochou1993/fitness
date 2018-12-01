@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use App\UserItem;
-use App\Policies\UserItemPolicy;
+use App\UserItem as Record;
+use App\Policies\RecordPolicy;
 use Laravel\Passport\Passport;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -16,7 +16,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        UserItem::class => UserItemPolicy::class,
+        Record::class => RecordPolicy::class,
     ];
 
     /**

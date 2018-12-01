@@ -3,7 +3,7 @@
 namespace App\Repositories\Api\V1;
 
 use App\Item;
-use App\UserItem;
+use App\UserItem as Record;
 use Illuminate\Http\Request;
 use App\Repositories\Api\ApiRepository;
 use App\Contracts\Api\V1\RecordInterface;
@@ -23,14 +23,14 @@ class RecordRepository extends ApiRepository implements RecordInterface
     /**
      *
      */
-    protected $user_item;
+    protected $record;
 
     /**
      *
      *
      *
      */
-    public function __construct(Request $request, Item $item, UserItem $user_item)
+    public function __construct(Request $request, Item $item, Record $record)
     {
         parent::__construct();
 
@@ -38,7 +38,7 @@ class RecordRepository extends ApiRepository implements RecordInterface
 
         $this->item = $item;
 
-        $this->user_item = $user_item;
+        $this->record = $record;
     }
 
     /**
@@ -103,8 +103,8 @@ class RecordRepository extends ApiRepository implements RecordInterface
      */
     public function putRecord($item_key)
     {
-        $user_item = $this->user_item->find($this->request->user_item_id);
+        $record = $this->record->find($this->request->record_id);
 
-        return ($this->user->can('update', $user_item)) ? $user_item->update($this->request->all()) : false;
+        return ($this->user->can('update', $record)) ? $record->update($this->request->all()) : false;
     }
 }
