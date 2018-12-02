@@ -1,25 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\Api\V1;
+namespace App\Http\Controllers\Api\V1\User;
 
 use Exception;
 use App\Helpers\Response;
 use App\Http\Controllers\Api\ApiController;
-use App\Http\Resources\RecordResource as Resource;
-use App\Http\Requests\Api\V1\RecordRequest as Request;
-use App\Contracts\Api\V1\RecordInterface as Repository;
+use App\Http\Resources\CategoryResource as Resource;
+use App\Http\Requests\Api\V1\CategoryRequest as Request;
+use App\Contracts\Api\V1\CategoryInterface as Repository;
 
-class UserRecordController extends ApiController
+class CategoryController extends ApiController
 {
     /**
      *
      */
     protected $repository;
-
-    /**
-     *
-     */
-    protected $request;
 
     /**
      *
@@ -54,7 +49,7 @@ class UserRecordController extends ApiController
         }
 
         try {
-            return Resource::collection($this->repository->getAllUserRecords());
+            return Resource::collection($this->repository->getAllUserCategories());
         } catch (Exception $e) {
             return Response::error($e->getMessage());
         }
@@ -63,17 +58,17 @@ class UserRecordController extends ApiController
     /**
      * Display the specified resource.
      *
-     * @param  string  $item_key
+     * @param  string  $category_key
      * @return \App\Http\Resources\Resource
      */
-    public function show($item_key)
+    public function show($category_key)
     {
         if ($this->errors) {
             return Response::fail($this->errors);
         }
 
         try {
-            return Resource::collection($this->repository->getUserRecord($item_key));
+            return Resource::collection($this->repository->getUserCategory($category_key));
         } catch (Exception $e) {
             return Response::error($e->getMessage());
         }

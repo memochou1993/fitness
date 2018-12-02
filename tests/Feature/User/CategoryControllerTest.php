@@ -1,11 +1,11 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\User;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 
-class UserCategoryControllerTest extends TestCase
+class CategoryControllerTest extends TestCase
 {
     /**
      *
@@ -17,7 +17,7 @@ class UserCategoryControllerTest extends TestCase
         $response = $this->withHeaders([
             'Accept' => 'application/json',
         ])->json('GET', '/api/users/me/categories', [
-            'with' => 'items',
+            //
         ]);
 
         $response->assertJson([
@@ -25,13 +25,6 @@ class UserCategoryControllerTest extends TestCase
                 [
                     'key' => config('seeds.categories.key'),
                     'name' => config('seeds.categories.name'),
-                    'items' => [
-                        [
-                            'key' => config('seeds.items.key'),
-                            'name' => config('seeds.items.name'),
-                            'unit' => config('seeds.items.unit'),
-                        ],
-                    ],
                 ],
             ],
         ])->assertStatus(200);
@@ -66,32 +59,12 @@ class UserCategoryControllerTest extends TestCase
      *
      * @return void
      */
-    public function testIndexError()
-    {
-        $response = $this->withHeaders([
-            'Accept' => 'application/json',
-        ])->json('GET', '/api/users/me/categories', [
-            'with' => 'items,string',
-        ]);
-
-        $response->assertJson([
-            'message' => [
-                //
-            ],
-        ])->assertStatus(500);
-    }
-
-    /**
-     *
-     *
-     * @return void
-     */
     public function testShow()
     {
         $response = $this->withHeaders([
             'Accept' => 'application/json',
         ])->json('GET', '/api/users/me/categories/' . config('seeds.categories.key'), [
-            'with' => 'items',
+            //
         ]);
 
         $response->assertJson([
@@ -99,13 +72,6 @@ class UserCategoryControllerTest extends TestCase
                 [
                     'key' => config('seeds.categories.key'),
                     'name' => config('seeds.categories.name'),
-                    'items' => [
-                        [
-                            'key' => config('seeds.items.key'),
-                            'name' => config('seeds.items.name'),
-                            'unit' => config('seeds.items.unit'),
-                        ],
-                    ],
                 ],
             ],
         ])->assertStatus(200);
@@ -133,25 +99,5 @@ class UserCategoryControllerTest extends TestCase
                 ],
             ],
         ])->assertStatus(400);
-    }
-
-    /**
-     *
-     *
-     * @return void
-     */
-    public function testShowError()
-    {
-        $response = $this->withHeaders([
-            'Accept' => 'application/json',
-        ])->json('GET', '/api/users/me/categories/' . config('seeds.categories.key'), [
-            'with' => 'items,string',
-        ]);
-
-        $response->assertJson([
-            'message' => [
-                //
-            ],
-        ])->assertStatus(500);
     }
 }

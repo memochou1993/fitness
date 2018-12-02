@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Api\V1;
+namespace App\Http\Controllers\Api\V1\User;
 
 use Exception;
 use App\Helpers\Response;
 use App\Http\Controllers\Api\ApiController;
-use App\Http\Resources\ItemResource as Resource;
-use App\Http\Requests\Api\V1\ItemRequest as Request;
-use App\Contracts\Api\V1\ItemInterface as Repository;
+use App\Http\Resources\RecordResource as Resource;
+use App\Http\Requests\Api\V1\RecordRequest as Request;
+use App\Contracts\Api\V1\RecordInterface as Repository;
 
-class UserItemController extends ApiController
+class RecordController extends ApiController
 {
     /**
      *
@@ -54,7 +54,7 @@ class UserItemController extends ApiController
         }
 
         try {
-            return Resource::collection($this->repository->getAllUserItems());
+            return Resource::collection($this->repository->getAllUserRecords());
         } catch (Exception $e) {
             return Response::error($e->getMessage());
         }
@@ -68,6 +68,14 @@ class UserItemController extends ApiController
      */
     public function show($item_key)
     {
-        //
+        if ($this->errors) {
+            return Response::fail($this->errors);
+        }
+
+        try {
+            return Resource::collection($this->repository->getUserRecord($item_key));
+        } catch (Exception $e) {
+            return Response::error($e->getMessage());
+        }
     }
 }

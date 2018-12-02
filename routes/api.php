@@ -13,15 +13,19 @@ use Illuminate\Http\Request;
 |
 */
 
+Route::resource('/categories', 'CategoryController')
+     ->only(['store', 'update', 'destroy']);
+Route::resource('/items', 'ItemController')
+     ->only(['show', 'store', 'update', 'destroy']);
+Route::resource('/records', 'RecordController')
+     ->only(['store', 'update', 'destroy']);
+
 Route::prefix('/users/me')->group(function () {
     Route::get('/', 'UserController@show');
-    Route::resource('/categories', 'UserCategoryController')->only(['index', 'show']);
-    Route::resource('/items', 'UserItemController')->only(['index', 'show']);
-    Route::resource('/records', 'UserRecordController')->only(['index', 'show']);
+    Route::resource('/categories', 'User\CategoryController')
+         ->only(['index', 'show']);
+    Route::resource('/items', 'User\ItemController')
+         ->only(['index', 'show']);
+    Route::resource('/records', 'User\RecordController')
+         ->only(['index', 'show']);
 });
-
-Route::resource('/categories', 'CategoryController')->except(['index', 'show', 'create', 'edit']);
-
-Route::resource('/items', 'ItemController')->except(['index', 'create', 'edit']);
-
-Route::resource('/records', 'RecordController')->except(['index', 'show', 'create', 'edit']);

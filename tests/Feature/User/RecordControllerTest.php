@@ -1,11 +1,11 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\User;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 
-class UserRecordControllerTest extends TestCase
+class RecordControllerTest extends TestCase
 {
     /**
      *
@@ -17,7 +17,7 @@ class UserRecordControllerTest extends TestCase
         $response = $this->withHeaders([
             'Accept' => 'application/json',
         ])->json('GET', '/api/users/me/records', [
-            'with' => 'category',
+            //
         ]);
 
         $response->assertJson([
@@ -68,7 +68,7 @@ class UserRecordControllerTest extends TestCase
         $response = $this->withHeaders([
             'Accept' => 'application/json',
         ])->json('GET', '/api/users/me/records/' . config('seeds.items.key'), [
-            'with' => 'category',
+            //
         ]);
 
         $response->assertJson([
