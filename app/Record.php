@@ -23,24 +23,4 @@ class Record extends Model
     protected $fillable = [
         'frequency', 'completed',
     ];
-
-    /**
-     *
-     *
-     *
-     */
-    public function getCreatedAtAttribute($value)
-    {
-        return Request::input('diffForHumans') == 'true' ? Carbon::parse($value)->diffForHumans() : $value;
-    }
-
-    /**
-     *
-     *
-     *
-     */
-    public function getUpdatedAtAttribute($value)
-    {
-        return Request::input('diffForHumans') == 'true' ? Carbon::parse($value)->diffForHumans() : $value;
-    }
 }

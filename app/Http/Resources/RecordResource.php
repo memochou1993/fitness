@@ -22,8 +22,8 @@ class RecordResource extends Resource
             'frequency' => $this->pivot->frequency,
             'unit' => $this->unit,
             'completed' => $this->pivot->completed,
-            'created_at' => $this->pivot->created_at,
-            'updated_at' => $this->pivot->updated_at,
+            'created_at' => $this->pivot->created_at->toDateTimeString(),
+            'updated_at' => $this->pivot->updated_at->toDateTimeString(),
         ];
     }
 }

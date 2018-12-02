@@ -18,26 +18,6 @@ class Item extends Model
     ];
 
     /**
-     *
-     *
-     *
-     */
-    public function getCreatedAtAttribute($value)
-    {
-        return Request::input('diffForHumans') == 'true' ? Carbon::parse($value)->diffForHumans() : $value;
-    }
-
-    /**
-     *
-     *
-     *
-     */
-    public function getUpdatedAtAttribute($value)
-    {
-        return Request::input('diffForHumans') == 'true' ? Carbon::parse($value)->diffForHumans() : $value;
-    }
-
-    /**
      * Get the category associated with the item.
      *
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
