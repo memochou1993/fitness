@@ -19,8 +19,8 @@ class ItemResource extends Resource
             'key' => $this->key,
             'category' => $this->category->name,
             'name' => $this->name,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'created_at' => $this->created_at->toDateTimeString(),
+            'updated_at' => $this->updated_at->toDateTimeString(),
         ];
     }
 }

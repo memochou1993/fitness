@@ -19,8 +19,8 @@ class CategoryResource extends Resource
             'key' => $this->key,
             'name' => $this->name,
             'items' => $this->whenLoaded('items'),
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'created_at' => $this->created_at->toDateTimeString(),
+            'updated_at' => $this->updated_at->toDateTimeString(),
         ];
     }
 }
