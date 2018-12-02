@@ -35,4 +35,36 @@ class ItemController extends ApiController
     {
         return Resource::collection($this->repository->getItem($item_key));
     }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function store()
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  string  $item_key
+     * @return \Illuminate\Http\Response
+     */
+    public function update($item_key)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  string  $item_id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($item_id)
+    {
+        //
+    }
 }

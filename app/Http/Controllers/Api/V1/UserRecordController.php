@@ -61,20 +61,6 @@ class UserRecordController extends ApiController
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function store()
-    {
-        if ($this->errors) {
-            return Response::fail($this->errors);
-        }
-
-        return Response::success($this->repository->postUserRecord(), 201);
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  string  $item_key
@@ -91,31 +77,5 @@ class UserRecordController extends ApiController
         } catch (Exception $e) {
             return Response::error($e->getMessage());
         }
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  string  $item_key
-     * @return \Illuminate\Http\Response
-     */
-    public function update($item_key)
-    {
-        if ($this->errors) {
-            return Response::fail($this->errors);
-        }
-
-        return ($this->repository->putUserRecord($item_key)) ? Response::success(null, 204) : Response::fail(null, 403);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  string  $item_id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($item_id)
-    {
-        //
     }
 }

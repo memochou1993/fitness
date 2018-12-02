@@ -56,16 +56,6 @@ class UserCategoryController extends ApiController
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function store()
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  string  $category_key
@@ -82,27 +72,5 @@ class UserCategoryController extends ApiController
         } catch (Exception $e) {
             return Response::error($e->getMessage());
         }
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  string  $category_id
-     * @return \Illuminate\Http\Response
-     */
-    public function update($category_id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  string  $category_id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($category_id)
-    {
-        //
     }
 }

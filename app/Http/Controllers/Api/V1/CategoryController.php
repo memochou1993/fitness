@@ -26,13 +26,34 @@ class CategoryController extends ApiController
     }
 
     /**
-     * Display the specified resource.
+     * Store a newly created resource in storage.
      *
-     * @param  string  $category_key
-     * @return \App\Http\Resources\Resource
+     * @return \Illuminate\Http\Response
      */
-    public function show($category_key)
+    public function store()
     {
-        return Resource::collection($this->repository->getCategory($category_key));
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  string  $category_id
+     * @return \Illuminate\Http\Response
+     */
+    public function update($category_id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  string  $category_id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($category_id)
+    {
+        //
     }
 }

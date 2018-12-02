@@ -5,11 +5,11 @@ namespace App\Http\Controllers\Api\V1;
 use Exception;
 use App\Helpers\Response;
 use App\Http\Controllers\Api\ApiController;
-use App\Http\Resources\ItemResource as Resource;
-use App\Http\Requests\Api\V1\ItemRequest as Request;
-use App\Contracts\Api\V1\ItemInterface as Repository;
+use App\Http\Resources\RecordResource as Resource;
+use App\Http\Requests\Api\V1\RecordRequest as Request;
+use App\Contracts\Api\V1\RecordInterface as Repository;
 
-class UserItemController extends ApiController
+class RecordController extends ApiController
 {
     /**
      *
@@ -43,30 +43,37 @@ class UserItemController extends ApiController
     }
 
     /**
-     * Display a listing of the resource.
+     * Store a newly created resource in storage.
      *
-     * @return \App\Http\Resources\Resource
+     * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function store()
     {
         if ($this->errors) {
             return Response::fail($this->errors);
         }
 
-        try {
-            return Resource::collection($this->repository->getAllUserItems());
-        } catch (Exception $e) {
-            return Response::error($e->getMessage());
-        }
+        return Response::success($this->repository->postUserRecord(), 201);
     }
 
     /**
-     * Display the specified resource.
+     * Update the specified resource in storage.
      *
      * @param  string  $item_key
-     * @return \App\Http\Resources\Resource
+     * @return \Illuminate\Http\Response
      */
-    public function show($item_key)
+    public function update($item_key)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  string  $item_id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($item_id)
     {
         //
     }

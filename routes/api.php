@@ -15,11 +15,13 @@ use Illuminate\Http\Request;
 
 Route::prefix('/users/me')->group(function () {
     Route::get('/', 'UserController@show');
-    Route::resource('/categories', 'UserCategoryController')->except(['create', 'edit']);
-    Route::resource('/items', 'UserItemController')->except(['create', 'edit']);
-    Route::resource('/records', 'UserRecordController')->except(['create', 'edit']);
+    Route::resource('/categories', 'UserCategoryController')->only(['index', 'show']);
+    Route::resource('/items', 'UserItemController')->only(['index', 'show']);
+    Route::resource('/records', 'UserRecordController')->only(['index', 'show']);
 });
 
-Route::resource('/categories', 'CategoryController')->only(['show']);
+Route::resource('/categories', 'CategoryController')->except(['index', 'show', 'create', 'edit']);
 
-Route::resource('/items', 'ItemController')->only(['show']);
+Route::resource('/items', 'ItemController')->except(['index', 'create', 'edit']);
+
+Route::resource('/records', 'RecordController')->except(['index', 'show', 'create', 'edit']);

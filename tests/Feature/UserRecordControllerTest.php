@@ -63,33 +63,6 @@ class UserRecordControllerTest extends TestCase
      *
      * @return void
      */
-    public function testStore()
-    {
-        $response = $this->withHeaders([
-            'Accept' => 'application/json',
-        ])->json('POST', '/api/users/me/records', [
-            'name' => 'new ' . config('seeds.items.name'),
-            'unit' => config('seeds.items.unit'),
-            'category_id' => config('seeds.categories.id'),
-            'frequency' => config('seeds.records.frequency'),
-        ]);
-
-        $response->assertJson([
-            'data' => [
-                [
-                    'name' => 'new ' . config('seeds.items.name'),
-                    'unit' => config('seeds.items.unit'),
-                    'category_id' => config('seeds.categories.id'),
-                ],
-            ],
-        ])->assertStatus(201);
-    }
-
-    /**
-     *
-     *
-     * @return void
-     */
     public function testShow()
     {
         $response = $this->withHeaders([
