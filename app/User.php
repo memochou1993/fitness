@@ -44,7 +44,7 @@ class User extends \TCG\Voyager\Models\User
     /**
      * The categories that belong to the user.
      *
-	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function categories()
     {
